@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics 2 Guide - Chapter 23: Physics Lab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yousef Taha Physics Guide - Chapter 23: Physics Lab</title>
 
     <link rel="stylesheet" href="style.css">
     <style>
@@ -35,13 +34,13 @@
 
         .btn {
             display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
+            padding: 8px 16px;
             background-color: #0056b3;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 14px;
+    margin: 10px 5px;
             transition: background-color 0.3s, transform 0.2s;
             text-align: center;
         }
@@ -71,23 +70,25 @@
         }
 
         #forceOutput, #distanceOutput {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
+    margin-top: 10px; /* تقليل التباعد */
+    font-size: 16px;
+    color: #0056b3; /* لون أزرق داكن للنص */
+    font-weight: bold;
+}
 
         .input-section {
-            margin: 20px 0;
-        }
+    margin: 10px 0; /* تقليل التباعد */
+}
 
-        input {
-            width: 60px;
-            padding: 5px;
-            font-size: 16px;
-            text-align: center;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+input {
+    width: 50px; /* تصغير عرض الحقول */
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 
         label {
             font-size: 16px;
@@ -109,11 +110,18 @@
         sup {
             font-size: smaller;
         }
+        @media (max-width: 768px) {
+    canvas {
+        width: 90%;
+        height: auto;
+    }
+}
+
     </style>
 </head>
 <body>
     <header>
-        <h1>Physics 2 Guide</h1>
+        <h1>Yousef Taha Physics Guide</h1>
         <p>Physics Lab - Chapter 23: Electric Fields</p>
     </header>
     <nav class="main-nav">
@@ -154,45 +162,42 @@
     <script>
         const canvas = document.getElementById("coulombCanvas");
         const ctx = canvas.getContext("2d");
-
+    
         const k = 8.99e9;
-
-        
+    
         const charges = [
             { x: 150, y: 200, radius: 20, color: "red", charge: 1 },  // 1 µC
             { x: 450, y: 200, radius: 20, color: "blue", charge: -1 } // -1 µC
         ];
-
+    
         let draggingCharge = null;
-
-         
+    
         function formatScientific(value) {
             if (value === 0) return "0";
             const exponent = Math.floor(Math.log10(Math.abs(value)));
             const mantissa = value / Math.pow(10, exponent);
             return `${mantissa.toFixed(2)} \u00d7 10<sup>${exponent}</sup>`;
         }
-
-           
+    
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                
+    
+            // رسم الخط بين الشحنتين
             ctx.beginPath();
             ctx.moveTo(charges[0].x, charges[0].y);
             ctx.lineTo(charges[1].x, charges[1].y);
             ctx.strokeStyle = "black";
             ctx.stroke();
-
-                
+    
+            // حساب المسافة بين الشحنتين وعرضها في المنتصف
             const midX = (charges[0].x + charges[1].x) / 2;
             const midY = (charges[0].y + charges[1].y) / 2;
             const distance = calculateDistance();
             ctx.font = "16px Arial";
             ctx.fillStyle = "black";
             ctx.fillText(`${distance.toFixed(2)} m`, midX, midY - 10);
-
-              
+    
+            // رسم الشحنتين
             charges.forEach(charge => {
                 ctx.beginPath();
                 ctx.arc(charge.x, charge.y, charge.radius, 0, 2 * Math.PI);
@@ -200,36 +205,32 @@
                 ctx.fill();
                 ctx.stroke();
             });
-
-              
+    
             updateForce();
         }
-
-            
+    
         function calculateDistance() {
             const dx = charges[1].x - charges[0].x;
             const dy = charges[1].y - charges[0].y;
-            return Math.sqrt(dx * dx + dy * dy) / 100;     
+            return Math.sqrt(dx * dx + dy * dy) / 100;  // تحويل من بيكسل إلى متر
         }
-
-           
+    
         function updateForce() {
             const r = calculateDistance();
-            const q1 = charges[0].charge * 1e-6;     
-            const q2 = charges[1].charge * 1e-6; 
-
+            const q1 = charges[0].charge * 1e-6;  // تحويل إلى كولوم
+            const q2 = charges[1].charge * 1e-6;  // تحويل إلى كولوم
+    
             if (r === 0) {
                 document.getElementById("forceOutput").innerHTML = "Force: Infinity (Distance cannot be zero)";
                 document.getElementById("distanceOutput").textContent = "Distance: 0 m";
                 return;
             }
-
+    
             const force = (k * Math.abs(q1 * q2)) / (r * r); // القوة بالنيوتن
             document.getElementById("distanceOutput").textContent = `Distance: ${r.toFixed(2)} m`;
             document.getElementById("forceOutput").innerHTML = `Force: ${formatScientific(force)} N`;
         }
-
-        
+    
         function updateCharges() {
             const charge1Input = document.getElementById("charge1").value;
             const charge2Input = document.getElementById("charge2").value;
@@ -237,21 +238,22 @@
             charges[1].charge = parseFloat(charge2Input);
             draw();
         }
-        
+    
         function isInsideCharge(x, y, charge) {
             const dx = x - charge.x;
             const dy = y - charge.y;
             return Math.sqrt(dx * dx + dy * dy) <= charge.radius;
         }
-
+    
+        // أحداث الفأرة
         canvas.addEventListener("mousedown", (event) => {
             const rect = canvas.getBoundingClientRect();
             const mouseX = event.clientX - rect.left;
             const mouseY = event.clientY - rect.top;
-
+    
             draggingCharge = charges.find(charge => isInsideCharge(mouseX, mouseY, charge));
         });
-
+    
         canvas.addEventListener("mousemove", (event) => {
             if (draggingCharge) {
                 const rect = canvas.getBoundingClientRect();
@@ -260,16 +262,41 @@
                 draw();
             }
         });
-
+    
         canvas.addEventListener("mouseup", () => {
             draggingCharge = null;
         });
-
+    
         canvas.addEventListener("mouseout", () => {
             draggingCharge = null;
         });
-
+    
+        // أحداث اللمس
+        canvas.addEventListener("touchstart", (event) => {
+            event.preventDefault(); // منع السلوك الافتراضي لتحريك الشاشة
+            const rect = canvas.getBoundingClientRect();
+            const touchX = event.touches[0].clientX - rect.left;
+            const touchY = event.touches[0].clientY - rect.top;
+    
+            draggingCharge = charges.find(charge => isInsideCharge(touchX, touchY, charge));
+        });
+    
+        canvas.addEventListener("touchmove", (event) => {
+            event.preventDefault(); // منع تحريك الشاشة أثناء السحب
+            if (draggingCharge) {
+                const rect = canvas.getBoundingClientRect();
+                draggingCharge.x = event.touches[0].clientX - rect.left;
+                draggingCharge.y = event.touches[0].clientY - rect.top;
+                draw();
+            }
+        }, { passive: false }); // تعيين passive إلى false لمنع السلوك الافتراضي
+    
+        canvas.addEventListener("touchend", () => {
+            draggingCharge = null;
+        });
+    
         draw();
     </script>
+    
 </body>
 </html>

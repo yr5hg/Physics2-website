@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 
 /* تصميم الخلفية */
 body {
@@ -37,6 +40,7 @@ header p {
     position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: rgba(0, 86, 179, 0.9)
 }
 
 .main-nav ul {
@@ -47,6 +51,7 @@ header p {
     display: flex;
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
 }
 
 .main-nav ul li {
@@ -56,9 +61,9 @@ header p {
 .main-nav ul li a {
     text-decoration: none;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 15px;
     display: block;
-    font-size: 18px;
+    font-size: 16px;
     transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -96,12 +101,25 @@ header p {
 /* تصميم التشابتر */
 .chapters {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 4 أعمدة للشاشات الكبيرة */
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+    .chapters {
+        grid-template-columns: repeat(2, 1fr); /* عمودان للأجهزة المتوسطة */
+    }
+}
+
+@media (max-width: 480px) {
+    .chapters {
+        grid-template-columns: 1fr; /* عمود واحد للأجهزة الصغيرة */
+    }
+}
+
 
 .chapters .chapter {
     background-color: white;
@@ -236,7 +254,8 @@ article ul li {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     margin: 30px auto; /* زيادة التباعد بين الأقسام */
-    max-width: 800px;
+    max-width: 100%;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
@@ -281,3 +300,62 @@ article ul li {
     padding: 10px;
 }
 
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    .chapters {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .description {
+        padding: 10px;
+        font-size: 16px;
+        position: static;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    .main-nav ul {
+        flex-direction: row; /* اجعل العناصر أفقية دائمًا */
+        justify-content: center; /* حافظ على توسيط العناصر */
+    }
+
+    .main-nav ul li {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    .description h2 {
+        font-size: 20px;
+    }
+
+    .chapters {
+        grid-template-columns: 1fr;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .form-control label {
+        font-size: 14px;
+    }
+
+    .form-control input, .form-control select {
+        font-size: 14px;
+    }
+}

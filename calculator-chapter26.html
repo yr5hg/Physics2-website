@@ -14,8 +14,27 @@
             color: #000;
         }
         .form-control {
-            margin-bottom: 10px;
-        }
+    display: flex;
+    justify-content: flex-start; /* محاذاة العناصر إلى اليسار */
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px; /* تقليل المسافة بين الوحدة والحقل */
+}
+
+.form-control label {
+    width: 120px; /* عرض ثابت للوحدات لضمان الاتساق */
+    font-size: 16px;
+    text-align: left;
+}
+
+.form-control input, .form-control select {
+    flex: 1;
+    min-width: 150px; /* عرض أدنى للحقول */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
         .btn-group {
             display: flex;
             gap: 10px;
@@ -93,7 +112,7 @@
 </head>
 <body>
     <header>
-        <h1>Physics 2 Guide</h1>
+        <h1>Yousef Taha Physics Guide</h1>
         <p>Your ultimate guide to mastering Physics 2</p>
     </header>
     <nav class="main-nav">

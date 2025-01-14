@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Physics 2 Guide - Potential Energy</title>
+    <title>Yousef Taha Physics Guide - Potential Energy</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -111,11 +110,28 @@
         .btn:hover {
             background-color: #003d80;
         }
+        @media (max-width: 768px) {
+    canvas {
+        width: 90%; /* جعل العرض 90% من عرض الشاشة */
+        height: auto; /* جعل الارتفاع يتناسب تلقائيًا */
+    }
+}
+@media (max-width: 768px) {
+    #output {
+        font-size: 14px; /* تقليل حجم الخط */
+    }
+
+    .controls input, .controls select {
+        width: 80px; /* تقليل عرض الحقول */
+        font-size: 14px;
+    }
+}
+
     </style>
 </head>
 <body>
     <header>
-        <h1>Physics 2 Guide</h1>
+        <h1>Yousef Taha Physics Guide</h1>
         <p>Physics Lab - Potential Energy of Multiple Charges</p>
     </header>
     <nav>
@@ -243,15 +259,16 @@
             }
 
             const formattedEnergy = formatScientific(totalPotentialEnergy);
-            document.getElementById("output").textContent = `Total Potential Energy: ${formattedEnergy} J`;
-        }
+            document.getElementById("output").innerHTML = `Total Potential Energy: ${formattedEnergy} J`;
 
+        }
         function formatScientific(value) {
-            if (value === 0 || isNaN(value) || !isFinite(value)) return "0";
+            if (value === 0) return "0";
             const exponent = Math.floor(Math.log10(Math.abs(value)));
             const mantissa = value / Math.pow(10, exponent);
-            return `${mantissa.toFixed(2)} × 10^${exponent}`;
+            return `${mantissa.toFixed(2)} \u00d7 10<sup>${exponent}</sup>`;
         }
+    
 
         function createChargeInputs() {
             const chargeInputsDiv = document.getElementById("chargeInputs");
