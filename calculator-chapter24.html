@@ -16,26 +16,50 @@
         }
         .form-control {
     display: flex;
-    justify-content: flex-start; /* محاذاة العناصر إلى اليسار */
     align-items: center;
-    margin-bottom: 10px;
-    gap: 10px; /* تقليل المسافة بين الوحدة والحقل */
+    gap: 10px; /* مسافة بين الحقول والقوائم */
+    flex-wrap: nowrap; /* منع العناصر من الانتقال إلى سطر جديد */
 }
 
-.form-control label {
-    width: 120px; /* عرض ثابت للوحدات لضمان الاتساق */
-    font-size: 16px;
-    text-align: left;
-}
-
-.form-control input, .form-control select {
-    flex: 1;
-    min-width: 150px; /* عرض أدنى للحقول */
+.form-control input {
+    flex: 2; /* الحقل يأخذ ضعف عرض القائمة */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
 }
+
+.form-control select {
+    flex: 1; /* القائمة تأخذ نصف عرض الحقل */
+    max-width: 80px; /* تحديد الحد الأقصى لعرض القائمة */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-control label {
+    width: 120px; /* عرض ثابت للتسمية */
+    font-size: 16px;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .form-control {
+        flex-direction: column; /* ترتيب العناصر عموديًا على الشاشات الصغيرة */
+        align-items: flex-start;
+    }
+
+    .form-control input,
+    .form-control select {
+        width: 100%; /* جعل الحقول والقوائم بعرض كامل */
+    }
+
+    .form-control label {
+        width: 100%; /* جعل التسمية بعرض كامل */
+    }
+}
+
         .btn-group {
             display: flex;
             gap: 10px;
