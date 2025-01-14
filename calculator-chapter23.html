@@ -17,25 +17,26 @@
     display: flex;
     align-items: center;
     gap: 10px; /* مسافة بين الحقول والقوائم */
-    flex-wrap: nowrap; /* منع العناصر من الانتقال إلى سطر جديد */
 }
 
 .form-control input {
-    flex: 2; /* الحقل يأخذ ضعف عرض القائمة */
+    flex: 1; /* جعل الحقول تأخذ مساحة مرنة */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
 }
 
+
 .form-control select {
-    flex: 1; /* القائمة تأخذ نصف عرض الحقل */
-    max-width: 80px; /* تحديد الحد الأقصى لعرض القائمة */
+    flex: 0 0 70px; /* جعل العرض ثابتًا بمقدار 70px */
+    max-width: 70px; /* تحديد الحد الأقصى للعرض */
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
 }
+
 
 .form-control label {
     width: 120px; /* عرض ثابت للتسمية */
