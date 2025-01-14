@@ -161,6 +161,8 @@
                     <input type="number" id="potential-e" step="any">
                     <select id="potential-e-unit" class="unit-select">
                         <option value="1">V/m</option>
+                        <option value="1e-3">mV/m</option>
+    <option value="1e3">kV/m</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -168,6 +170,8 @@
                     <input type="number" id="potential-d" step="any">
                     <select id="potential-d-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+                        <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -188,6 +192,9 @@
                     <input type="number" id="energy-q" step="any">
                     <select id="energy-q-unit" class="unit-select">
                         <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+    <option value="1e-6">µC</option>
+    <option value="1e-9">nC</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -195,6 +202,9 @@
                     <input type="number" id="energy-dv" step="any">
                     <select id="energy-dv-unit" class="unit-select">
                         <option value="1">V</option>
+                        <option value="1">V</option>
+                        <option value="1e-3">mV</option>
+                        <option value="1e3">kV</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -215,6 +225,9 @@
                     <input type="number" id="single-q" step="any">
                     <select id="single-q-unit" class="unit-select">
                         <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+    <option value="1e-6">µC</option>
+    <option value="1e-9">nC</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -222,6 +235,8 @@
                     <input type="number" id="single-r" step="any">
                     <select id="single-r-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -242,6 +257,9 @@
                     <input type="number" id="two-q1" step="any">
                     <select id="two-q1-unit" class="unit-select">
                         <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+                        <option value="1e-6">µC</option>
+                        <option value="1e-9">nC</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -249,6 +267,9 @@
                     <input type="number" id="two-q2" step="any">
                     <select id="two-q2-unit" class="unit-select">
                         <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+    <option value="1e-6">µC</option>
+    <option value="1e-9">nC</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -256,6 +277,8 @@
                     <input type="number" id="two-r" step="any">
                     <select id="two-r-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+                        <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -282,7 +305,7 @@ function getValueWithUnit(inputId, unitId) {
 // Helper function to format result in scientific notation
 function formatScientific(value) {
     if (value === 0) return "0.00";
-    if (value >= 1 && value < 10) {
+    if ((value >= 1 && value < 10)|| (value > -10 && value <= -1)) {
         return `${value.toFixed(2)}`;
     } else {
         const exponent = Math.floor(Math.log10(Math.abs(value)));

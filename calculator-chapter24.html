@@ -162,6 +162,8 @@
                     <input type="number" id="flux-e" step="any">
                     <select id="flux-e-unit" class="unit-select">
                         <option value="1">V/m</option>
+                        <option value="1e-3">mV/m</option>
+                        <option value="1e3">kV/m</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -169,6 +171,8 @@
                     <input type="number" id="flux-a" step="any">
                     <select id="flux-a-unit" class="unit-select">
                         <option value="1">m&sup2;</option>
+                        <option value="1e-4">cm²</option>
+                        <option value="1e-6">mm²</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -193,6 +197,9 @@
                     <input type="number" id="gauss-q" step="any">
                     <select id="gauss-q-unit" class="unit-select">
                         <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+                        <option value="1e-6">µC</option>
+                        <option value="1e-9">nC</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -213,6 +220,8 @@
                     <input type="number" id="line-lambda" step="any">
                     <select id="line-lambda-unit" class="unit-select">
                         <option value="1">C/m</option>
+    <option value="1e-3">mC/m</option>
+    <option value="1e-6">µC/m</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -239,7 +248,9 @@
                     <label for="surface-sigma">Surface Charge Density (&sigma;):</label>
                     <input type="number" id="surface-sigma" step="any">
                     <select id="surface-sigma-unit" class="unit-select">
-                        <option value="1">C/m&sup2;</option>
+                        <option value="1">C/m²</option>
+                        <option value="1e-3">mC/m²</option>
+                        <option value="1e-6">µC/m²</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -269,7 +280,7 @@ function getValueWithUnit(inputId, unitId) {
 // Helper function to format result in scientific notation
 function formatScientific(value) {
     if (value === 0) return "0.00";
-    if (value >= 1 && value < 10) {
+    if ((value >= 1 && value < 10)|| (value > -10 && value <= -1)) {
         return `${value.toFixed(2)}`;
     } else {
         const exponent = Math.floor(Math.log10(Math.abs(value)));

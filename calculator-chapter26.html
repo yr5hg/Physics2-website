@@ -161,6 +161,9 @@
                     <input type="number" id="cap-q" step="any">
                     <select id="cap-q-unit" class="unit-select">
                         <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+                        <option value="1e-6">µC</option>
+                        <option value="1e-9">nC</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -168,6 +171,8 @@
                     <input type="number" id="cap-dv" step="any">
                     <select id="cap-dv-unit" class="unit-select">
                         <option value="1">V</option>
+                        <option value="1e-3">mV</option>
+    <option value="1e3">kV</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -188,6 +193,8 @@
                     <input type="number" id="spherical-a" step="any">
                     <select id="spherical-a-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -208,6 +215,8 @@
                     <input type="number" id="plate-a" step="any">
                     <select id="plate-a-unit" class="unit-select">
                         <option value="1">m&sup2;</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -215,6 +224,8 @@
                     <input type="number" id="plate-d" step="any">
                     <select id="plate-d-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -235,6 +246,8 @@
                     <input type="number" id="cyl-l" step="any">
                     <select id="cyl-l-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -242,6 +255,8 @@
                     <input type="number" id="cyl-a" step="any">
                     <select id="cyl-a-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -249,6 +264,8 @@
                     <input type="number" id="cyl-b" step="any">
                     <select id="cyl-b-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -269,6 +286,8 @@
                     <input type="number" id="sph-a" step="any">
                     <select id="sph-a-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="form-control">
@@ -276,6 +295,8 @@
                     <input type="number" id="sph-b" step="any">
                     <select id="sph-b-unit" class="unit-select">
                         <option value="1">m</option>
+                        <option value="1e-2">cm</option>
+    <option value="1e-3">mm</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -295,6 +316,12 @@
                 <div class="form-control">
                     <label for="eq-caps">Capacitances (comma-separated):</label>
                     <input type="text" id="eq-caps">
+                    <select id="eq-caps-unit" class="unit-select">
+                        <option value="1">F</option>
+                        <option value="1e-3">mF</option>
+                        <option value="1e-6">µF</option>
+                        <option value="1e-9">nF</option>
+                    </select>
                 </div>
                 <div class="form-control">
                     <label for="eq-type">Connection Type:</label>
@@ -322,6 +349,9 @@
                         <input type="number" id="energy-q" step="any">
                         <select id="energy-q-unit" class="unit-select">
                             <option value="1">C</option>
+                            <option value="1e-3">mC</option>
+    <option value="1e-6">µC</option>
+    <option value="1e-9">nC</option>
                         </select>
                     </div>
                     <div class="form-control">
@@ -329,6 +359,8 @@
                         <input type="number" id="energy-v" step="any">
                         <select id="energy-v-unit" class="unit-select">
                             <option value="1">V</option>
+                            <option value="1e-3">mV</option>
+                            <option value="1e3">kV</option>
                         </select>
                     </div>
                     <div class="form-control">
@@ -336,6 +368,9 @@
                         <input type="number" id="energy-c" step="any">
                         <select id="energy-c-unit" class="unit-select">
                             <option value="1">F</option>
+                            <option value="1e-3">mF</option>
+                            <option value="1e-6">µF</option>
+                            <option value="1e-9">nF</option>
                         </select>
                     </div>
                     <div class="btn-group">
@@ -367,7 +402,7 @@ function getValueWithUnit(inputId, unitId) {
 // Helper function to format result in scientific notation
 function formatScientific(value) {
     if (value === 0) return "0.00";
-    if (value >= 1 && value < 10) {
+    if ((value >= 1 && value < 10)|| (value > -10 && value <= -1)) {
         return `${value.toFixed(2)}`;
     } else {
         const exponent = Math.floor(Math.log10(Math.abs(value)));
@@ -490,19 +525,23 @@ function clearSphericalCapacitorCapacitance() {
 
 // 6. Equivalent Capacitance (Parallel and Series)
 function calculateEquivalentCapacitance() {
-    const caps = document.getElementById('eq-caps').value.split(',').map(Number);
-    const type = document.getElementById('eq-type').value;
+    const caps = document.getElementById('eq-caps').value.split(',').map(Number); // قراءة القيم المدخلة كأرقام
+    const unit = parseFloat(document.getElementById('eq-caps-unit').value); // قراءة الوحدة المختارة
+    const type = document.getElementById('eq-type').value; // قراءة نوع التوصيل (توازي أو تسلسل)
 
     if (caps.some(isNaN) || caps.length === 0) {
         displayResult('equivalent-capacitance-result', 'Error: Please enter valid capacitances.');
         return;
     }
 
+    // تحويل القيم إلى Farads باستخدام الوحدة المختارة
+    const capsInFarads = caps.map(c => c * unit);
+
     let Ceq;
     if (type === 'parallel') {
-        Ceq = caps.reduce((sum, c) => sum + c, 0);
+        Ceq = capsInFarads.reduce((sum, c) => sum + c, 0); // مجموع السعات في التوصيل التوازي
     } else if (type === 'series') {
-        Ceq = 1 / caps.reduce((sum, c) => sum + (1 / c), 0);
+        Ceq = 1 / capsInFarads.reduce((sum, c) => sum + (1 / c), 0); // مجموع مقلوبات السعات في التوصيل التسلسلي
     }
 
     displayResult('equivalent-capacitance-result', formatScientific(Ceq) + ' F');
@@ -515,9 +554,9 @@ function clearEquivalentCapacitance() {
 
 // 7. Stored Energy in a Capacitor: U = Q^2 / (2C) = 1/2 * Q * ΔV = 1/2 * C * (ΔV)^2
 function calculateStoredEnergy() {
-    const Q = parseFloat(document.getElementById('energy-q').value);
-    const V = parseFloat(document.getElementById('energy-v').value);
-    const C = parseFloat(document.getElementById('energy-c').value);
+    const Q = getValueWithUnit('energy-q', 'energy-q-unit'); // أخذ الشحنة مع الوحدة
+    const V = getValueWithUnit('energy-v', 'energy-v-unit'); // أخذ فرق الجهد مع الوحدة
+    const C = getValueWithUnit('energy-c', 'energy-c-unit'); // أخذ السعة مع الوحدة
 
     const hasQ = !isNaN(Q);
     const hasV = !isNaN(V);

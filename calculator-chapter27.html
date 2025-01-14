@@ -291,7 +291,7 @@ function getValueWithUnit(inputId, unitId) {
 // Helper function to format result in scientific notation
 function formatScientific(value) {
     if (value === 0) return "0.00";
-    if (value >= 1 && value < 10) {
+    if ((value >= 1 && value < 10)|| (value > -10 && value <= -1)) {
         return `result = ${value.toFixed(2)}`;
     } else {
         const exponent = Math.floor(Math.log10(Math.abs(value)));
