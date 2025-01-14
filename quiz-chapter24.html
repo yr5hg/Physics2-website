@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Chapter 24</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('physics-background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000; /* جعل النص باللون الأسود */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .question {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .question h3 {
+            color: #0056b3;
+            font-size: 20px;
+        }
+
+        .question label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .main-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: rgba(0, 86, 179, 0.8);
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul li {
+            margin: 0 15px;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            display: block;
+            font-size: 18px;
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            background-color: #003366;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes" class="active"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 24 Quiz</h2>
+        <form id="quiz-form">
+            <input type="hidden" name="quiz-id" value="chapter24">
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>1. A cubical gaussian surface surrounds a long, straight, charged filament that passes perpendicularly through two opposite faces. No other charges are nearby.</h3>
+                <p>(i) Over how many of the cube’s faces is the electric field zero?</p>
+                <label><input type="radio" name="q1a" value="a"> (a) 0</label>
+                <label><input type="radio" name="q1a" value="b"> (b) 2</label>
+                <label><input type="radio" name="q1a" value="c"> (c) 4</label>
+                <label><input type="radio" name="q1a" value="d"> (d) 6</label>
+                <p>(ii) Through how many of the cube’s faces is the electric flux zero? Choose from the same possibilities as in part (i).</p>
+                <label><input type="radio" name="q1b" value="a"> (a) 0</label>
+                <label><input type="radio" name="q1b" value="b"> (b) 2</label>
+                <label><input type="radio" name="q1b" value="c"> (c) 4</label>
+                <label><input type="radio" name="q1b" value="d"> (d) 6</label>
+            </div>
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. A coaxial cable consists of a long, straight filament surrounded by a long, coaxial, cylindrical conducting shell. Assume charge Q is on the filament, zero net charge is on the shell, and the electric field is E<sub>1</sub> at a particular point P midway between the filament and the inner surface of the shell. Next, you place the cable into a uniform external field -E<sub>1</sub>. What is the x-component of the electric field at P then?</h3>
+                <label><input type="radio" name="q2" value="a"> (a) 0</label>
+                <label><input type="radio" name="q2" value="b"> (b) Between 0 and E<sub>1</sub></label>
+                <label><input type="radio" name="q2" value="c"> (c) E<sub>1</sub></label>
+                <label><input type="radio" name="q2" value="d"> (d) Between 0 and -E<sub>1</sub></label>
+                <label><input type="radio" name="q2" value="e"> (e) -E<sub>1</sub></label>
+            </div>
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. In which of the following contexts can Gauss's law not be readily applied to find the electric field?</h3>
+                <label><input type="radio" name="q3" value="a"> (a) Near a long, uniformly charged wire</label>
+                <label><input type="radio" name="q3" value="b"> (b) Above a large, uniformly charged plane</label>
+                <label><input type="radio" name="q3" value="c"> (c) Inside a uniformly charged ball</label>
+                <label><input type="radio" name="q3" value="d"> (d) Outside a uniformly charged sphere</label>
+                <label><input type="radio" name="q3" value="e"> (e) Gauss’s law can be readily applied to find the electric field in all these contexts</label>
+            </div>
+<!-- Question 4 -->
+<div class="question">
+    <h3>4. A particle with charge \( q \) is located inside a cubical Gaussian surface. No other charges are nearby.</h3>
+    <p>(i) If the particle is at the center of the cube, what is the flux through each one of the faces of the cube?</p>
+    <label><input type="radio" name="q4a" value="a"> (a) 0</label>
+    <label><input type="radio" name="q4a" value="b"> (b) \( \frac{q}{2\epsilon_0} \)</label>
+    <label><input type="radio" name="q4a" value="c"> (c) \( \frac{q}{6\epsilon_0} \)</label>
+    <label><input type="radio" name="q4a" value="d"> (d) \( \frac{q}{8\epsilon_0} \)</label>
+    <label><input type="radio" name="q4a" value="e"> (e) Depends on the size of the cube</label>
+    <p>(ii) If the particle can be moved to any point within the cube, what maximum value can the flux through one face approach?</p>
+    <label><input type="radio" name="q4b" value="a"> (a) 0</label>
+    <label><input type="radio" name="q4b" value="b"> (b) \( \frac{q}{2\epsilon_0} \)</label>
+    <label><input type="radio" name="q4b" value="c"> (c) \( \frac{q}{6\epsilon_0} \)</label>
+    <label><input type="radio" name="q4b" value="d"> (d) \( \frac{q}{8\epsilon_0} \)</label>
+    <label><input type="radio" name="q4b" value="e"> (e) Depends on the size of the cube</label>
+</div>
+
+<script>
+  MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']] }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Question 5 -->
+<div class="question">
+    <h3>5. Charges of 3.00 nC, -2.00 nC, -7.00 nC, and 1.00 nC are contained inside a rectangular box with length 1.00 m, width 2.00 m, and height 2.50 m. Outside the box are charges of 1.00 nC and 4.00 nC. What is the electric flux through the surface of the box?</h3>
+    <label><input type="radio" name="q5" value="a"> (a) 0</label>
+    <label><input type="radio" name="q5" value="b"> (b) -5.64 × 10<sup>2</sup> N·m<sup>2</sup>/C</label>
+    <label><input type="radio" name="q5" value="c"> (c) -1.47 × 10<sup>3</sup> N·m<sup>2</sup>/C</label>
+    <label><input type="radio" name="q5" value="d"> (d) 1.47 × 10<sup>3</sup> N·m<sup>2</sup>/C</label>
+    <label><input type="radio" name="q5" value="e"> (e) 5.64 × 10<sup>2</sup> N·m<sup>2</sup>/C</label>
+</div>
+
+
+<!-- Question 6 -->
+<div class="question">
+    <h3>6. Two solid spheres, both of radius \( 5 \, \text{cm} \), carry identical total charges of \( 2 \, \mu\text{C} \). Sphere A is a good conductor. Sphere B is an insulator, and its charge is distributed uniformly throughout its volume.</h3>
+    <p>(i) How do the magnitudes of the electric fields they separately create at a radial distance of \( 6 \, \text{cm} \) compare?</p>
+    <label><input type="radio" name="q6a" value="a"> (a) \( E_A > E_B = 0 \)</label>
+    <label><input type="radio" name="q6a" value="b"> (b) \( E_A > E_B > 0 \)</label>
+    <label><input type="radio" name="q6a" value="c"> (c) \( E_A = E_B > 0 \)</label>
+    <label><input type="radio" name="q6a" value="d"> (d) \( 0 < E_A < E_B \)</label>
+    <label><input type="radio" name="q6a" value="e"> (e) \( 0 = E_A < E_B \)</label>
+    <p>(ii) How do the magnitudes of the electric fields they separately create at radius \( 4 \, \text{cm} \) compare?</p>
+    <label><input type="radio" name="q6b" value="a"> (a) \( E_A > E_B = 0 \)</label>
+    <label><input type="radio" name="q6b" value="b"> (b) \( E_A > E_B > 0 \)</label>
+    <label><input type="radio" name="q6b" value="c"> (c) \( E_A = E_B > 0 \)</label>
+    <label><input type="radio" name="q6b" value="d"> (d) \( 0 < E_A < E_B \)</label>
+    <label><input type="radio" name="q6b" value="e"> (e) \( 0 = E_A < E_B \)</label>
+</div>
+<!-- Question 7 -->
+<div class="question">
+    <h3>7. A uniform electric field of \( 1.00 \, \text{N/C} \) is set up by a uniform distribution of charge in the \( xy \)-plane. What is the electric field inside a metal ball placed \( 0.500 \, \text{m} \) above the \( xy \)-plane?</h3>
+    <label><input type="radio" name="q7" value="a"> (a) \( 1.00 \, \text{N/C} \)</label>
+    <label><input type="radio" name="q7" value="b"> (b) \( -1.00 \, \text{N/C} \)</label>
+    <label><input type="radio" name="q7" value="c"> (c) 0</label>
+    <label><input type="radio" name="q7" value="d"> (d) \( 0.250 \, \text{N/C} \)</label>
+    <label><input type="radio" name="q7" value="e"> (e) Varies depending on the position inside the ball.</label>
+</div>
+
+<!-- Question 8 -->
+<div class="question">
+    <h3>8. A cubical Gaussian surface is bisected by a large sheet of charge, parallel to its top and bottom faces. No other charges are nearby.</h3>
+    <p>(i) Over how many of the cube's faces is the electric field zero?</p>
+    <label><input type="radio" name="q8a" value="a"> (a) 0</label>
+    <label><input type="radio" name="q8a" value="b"> (b) 2</label>
+    <label><input type="radio" name="q8a" value="c"> (c) 4</label>
+    <label><input type="radio" name="q8a" value="d"> (d) 6</label>
+    <p>(ii) Through how many of the cube's faces is the electric flux zero?</p>
+    <label><input type="radio" name="q8b" value="a"> (a) 0</label>
+    <label><input type="radio" name="q8b" value="b"> (b) 2</label>
+    <label><input type="radio" name="q8b" value="c"> (c) 4</label>
+    <label><input type="radio" name="q8b" value="d"> (d) 6</label>
+</div>
+
+            <button type="submit" class="btn">Submit</button>
+            <a href="index.html#quizzes" class="btn">Back</a>
+        </form>
+        <div id="quiz-result" style="display: none;"></div>
+    </section>
+    <script src="quiz24.js"></script>
+
+</body>
+</html>

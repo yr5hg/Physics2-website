@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Chapter 27</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('physics-background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .question {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .question h3 {
+            color: #0056b3;
+            font-size: 20px;
+        }
+
+        .question label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .main-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: rgba(0, 86, 179, 0.8);
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul li {
+            margin: 0 15px;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            display: block;
+            font-size: 18px;
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            background-color: #003366;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes" class="active"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 27 Quiz</h2>
+        <form id="quiz-form">
+            <input type="hidden" name="quiz-id" value="chapter27">
+            
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>1. Two wires A and B with circular cross sections are made of the same metal and have equal lengths, but the resistance of wire A is three times greater than that of wire B.</h3>
+                <p>(i) What is the ratio of the radius of A to B?</p>
+                <label><input type="radio" name="q1a" value="a"> (a) \(3\)</label>
+                <label><input type="radio" name="q1a" value="b"> (b) \(\sqrt{3}\)</label>
+                <label><input type="radio" name="q1a" value="c"> (c) \(1\)</label>
+                <label><input type="radio" name="q1a" value="d"> (d) \(\frac{1}{3}\)</label>
+                <label><input type="radio" name="q1a" value="e"> (e) \(\frac{1}{\sqrt{3}}\)</label>
+                <p>(ii) What is the ratio of the radius of A to that of 
+                    B?.</p>
+                    <label><input type="radio" name="q1b" value="a"> (a) \(3\)</label>
+                <label><input type="radio" name="q1b" value="b"> (b) \(\sqrt{3}\)</label>
+                <label><input type="radio" name="q1b" value="c"> (c) \(1\)</label>
+                <label><input type="radio" name="q1b" value="d"> (d) \(\frac{1}{3}\)</label>
+                <label><input type="radio" name="q1b" value="e"> (e) \(\frac{1}{\sqrt{3}}\)</label>
+
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. A current-carrying cylindrical wire has a cross-sectional area that gradually becomes smaller from one end of the wire to the other. The current has the same value at all cross sections of the wire, so charge does not accumulate at any point.</h3>
+                <p>(i) How does the drift speed vary along the wire as the area becomes smaller?</p>
+                <label><input type="radio" name="q2a" value="a"> (a) Increases</label>
+                <label><input type="radio" name="q2a" value="b"> (b) Decreases</label>
+                <label><input type="radio" name="q2a" value="c"> (c) Remains constant</label>
+                <p>(ii) How does the electric field vary along the wire as the area becomes smaller?</p>
+                <label><input type="radio" name="q2b" value="a"> (a) Increases</label>
+                <label><input type="radio" name="q2b" value="b"> (b) Decreases</label>
+                <label><input type="radio" name="q2b" value="c"> (c) Remains constant</label>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. A potential difference of 10.0 V is maintained across a 10.0 Ω resistor for a period of 20.0 s. What total charge passes by a point in one of the wires connected to the resistor in this time interval?</h3>
+                <label><input type="radio" name="q3" value="a"> (a) \(200 \, \mathrm{C}\)</label>
+                <label><input type="radio" name="q3" value="b"> (b) \(20.0 \, \mathrm{C}\)</label>
+                <label><input type="radio" name="q3" value="c"> (c) \(2.00 \, \mathrm{C}\)</label>
+                <label><input type="radio" name="q3" value="d"> (d) \(0.00500 \, \mathrm{C}\)</label>
+                <label><input type="radio" name="q3" value="e"> (d) \(0.0500 \, \mathrm{C}\)</label>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <h3>4. Three wires are made of copper having circular cross sections. Wire 1 has a length \( L \) and radius \( 2r \). Wire 2 has a length \( 2L \) and radius \( 3r \). Wire 3 has a length \( 2L \) and radius \( 5r \). Which wire has the smallest resistance?</h3>
+                <label><input type="radio" name="q4" value="a"> (a) Wire 1</label>
+                <label><input type="radio" name="q4" value="b"> (b) Wire 2</label>
+                <label><input type="radio" name="q4" value="c"> (c) Wire 3</label>
+                <label><input type="radio" name="q4" value="d"> (d) All have the same resistance</label>
+                <label><input type="radio" name="q4" value="e"> (e) Not enough information is given to answer the question</label>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                <h3>5. A metal wire of resistance R is cut into three equal 
+                    pieces that are then placed together side by side to 
+                    form a new cable with a length equal to one-third 
+                    the original length. What is the resistance of this new 
+                    cable?</h3>
+                <label><input type="radio" name="q5" value="a"> (a) \(1/9R\)</label>
+                <label><input type="radio" name="q5" value="b"> (b) \(1/3R\)</label>
+                <label><input type="radio" name="q5" value="c"> (c) \(R\)</label>
+                <label><input type="radio" name="q5" value="d"> (d) \(3R\)</label>
+                <label><input type="radio" name="q5" value="e"> (d) \(9R\)</label>
+            </div>
+            <!-- Question 6 -->
+<div class="question">
+    <h3>6. A metal wire has a resistance of 10.0 Ω at a temperature of \(20.0^\circ \mathrm{C}\). If the same wire has a resistance of 10.6 Ω at \(90.0^\circ \mathrm{C}\), what is the resistance of this wire when its temperature is \(220.0^\circ \mathrm{C}\)?</h3>
+    <label><input type="radio" name="q6" value="a"> (a) \(0.700 \, \Omega\)</label>
+    <label><input type="radio" name="q6" value="b"> (b) \(9.66 \, \Omega\)</label>
+    <label><input type="radio" name="q6" value="c"> (c) \(10.3 \, \Omega\)</label>
+    <label><input type="radio" name="q6" value="d"> (d) \(13.8 \, \Omega\)</label>
+    <label><input type="radio" name="q6" value="e"> (e) \(6.59 \, \Omega\)</label>
+</div>
+
+<!-- Question 7 -->
+<div class="question">
+    <h3>7. Two conductors made of the same material are connected across the same potential difference. Conductor A has twice the diameter and twice the length of conductor B. What is the ratio of the power delivered to A to the power delivered to B?</h3>
+    <label><input type="radio" name="q7" value="a"> (a) \(8\)</label>
+    <label><input type="radio" name="q7" value="b"> (b) \(4\)</label>
+    <label><input type="radio" name="q7" value="c"> (c) \(2\)</label>
+    <label><input type="radio" name="q7" value="d"> (d) \(1\)</label>
+    <label><input type="radio" name="q7" value="e"> (e) \(1/2\)</label>
+</div>
+
+<!-- Question 8 -->
+<div class="question">
+    <h3>8. Two conducting wires A and B of the same length and radius are connected across the same potential difference. Conductor A has twice the resistivity of conductor B. What is the ratio of the power delivered to A to the power delivered to B?</h3>
+    <label><input type="radio" name="q8" value="a"> (a) \(2\)</label>
+    <label><input type="radio" name="q8" value="b"> (b) \(\sqrt{2}\)</label>
+    <label><input type="radio" name="q8" value="c"> (c) \(1\)</label>
+    <label><input type="radio" name="q8" value="d"> (d) \(1/\sqrt{2}\)</label>
+    <label><input type="radio" name="q8" value="e"> (e) \(1/2\)</label>
+</div>
+<!-- Question 9 -->
+<div class="question">
+    <h3>9. Two lightbulbs both operate on \(120 \, \mathrm{V}\). One has a power of \(25 \, \mathrm{W}\) and the other \(100 \, \mathrm{W}\).</h3>
+    <p>(i) Which lightbulb has higher resistance?</p>
+    <label><input type="radio" name="q9a" value="a"> (a) The dim \(25 \, \mathrm{W}\) lightbulb does.</label>
+    <label><input type="radio" name="q9a" value="b"> (b) The bright \(100 \, \mathrm{W}\) lightbulb does.</label>
+    <label><input type="radio" name="q9a" value="c"> (c) Both are the same.</label>
+    <p>(ii) Which lightbulb carries more current when in use?</p>
+    <label><input type="radio" name="q9b" value="a"> (a) The dim \(25 \, \mathrm{W}\) lightbulb does.</label>
+    <label><input type="radio" name="q9b" value="b"> (b) The bright \(100 \, \mathrm{W}\) lightbulb does.</label>
+    <label><input type="radio" name="q9b" value="c"> (c) Both are the same.</label>
+</div>
+
+
+<!-- Question 10 -->
+<div class="question">
+    <h3>10. Wire B has twice the length and twice the radius of wire A. Both wires are made from the same material. If wire A has resistance \(R\), what is the resistance of wire B?</h3>
+    <label><input type="radio" name="q10" value="a"> (a) \(4R\)</label>
+    <label><input type="radio" name="q10" value="b"> (b) \(2R\)</label>
+    <label><input type="radio" name="q10" value="c"> (c) \(R\)</label>
+    <label><input type="radio" name="q10" value="d"> (d) \(1/2R\)</label>
+    <label><input type="radio" name="q10" value="e"> (e) \(1/4R\)</label>
+</div>
+
+            <button type="submit" class="btn">Submit</button>
+            <a href="index.html#quizzes" class="btn">Back</a>
+        </form>
+        <div id="quiz-result" style="display: none;"></div>
+    </section>
+    <script src="quiz27.js"></script>
+</body>
+</html>

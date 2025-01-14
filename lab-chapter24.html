@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics 2 Guide - Chapter 24: Physics Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('physics-background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000000;
+        }
+
+        .lab-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .controls input, .controls select {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .main-nav {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul li {
+            margin: 0 15px;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            color: #FFD700;
+        }
+
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Physics Lab - Chapter 24: Gauss's Law</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="theory-chapter24.html"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="lab-chapter24.html" class="active"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="calculator-chapter24.html"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="quiz-chapter24.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="lab-section">
+        <h2>Interactive Experiment: Gauss's Law</h2>
+        <p>Choose the charge value, distance, and sphere radius for calculations. The displayed sphere size remains fixed.</p>
+        <div class="controls">
+            <label for="chargeInput">Charge (&#181;C):</label>
+            <input type="number" id="chargeInput" value="1" step="0.01">
+            <label for="distanceInput">Distance (m):</label>
+            <input type="number" id="distanceInput" value="1.0" step="0.01">
+            <label for="radiusInput">Sphere Radius (m):</label>
+            <input type="number" id="radiusInput" value="1.5" step="0.01">
+            <button onclick="updateFromInputs()">Set Values</button>
+        </div>
+        <canvas id="gaussCanvas" width="600" height="400"></canvas>
+        <p id="output">Electric Field: 0 N/C | Equation: N/A | Distance: 0.00 m</p>
+        <a href="index.html#lab" class="btn">Back</a>
+    </section>
+
+    <script>
+        const canvas = document.getElementById("gaussCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Constants
+        const ke = 8.99e9; // Coulomb's constant
+        const canvasRadius = 150; // Radius in pixels (fixed for drawing)
+        const centerX = 300; // X-coordinate of the sphere's center
+        const centerY = 200; // Y-coordinate of the sphere's center
+
+        let charge = { x: 300, y: 200, radius: 10, color: "red" };
+        let dragging = false;
+        let sphereRadius = 1.5; // Initial radius in meters
+
+        function getChargeValue() {
+            return parseFloat(document.getElementById("chargeInput").value) * 1e-6; // Convert &#181;C to C
+        }
+
+        function getDistanceValue() {
+            return parseFloat(document.getElementById("distanceInput").value); // Distance in meters
+        }
+
+        function getRadiusValue() {
+            return parseFloat(document.getElementById("radiusInput").value); // Get radius directly
+        }
+
+        function updateSphereRadius() {
+            sphereRadius = getRadiusValue();
+        }
+
+        // Draw the sphere and the charge
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the sphere
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, canvasRadius, 0, 2 * Math.PI);
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.fillStyle = "rgba(0, 0, 255, 0.1)";
+            ctx.fill();
+
+            // Draw the charge
+            ctx.beginPath();
+            ctx.arc(charge.x, charge.y, charge.radius, 0, 2 * Math.PI);
+            ctx.fillStyle = charge.color;
+            ctx.fill();
+            ctx.stroke();
+
+            calculateElectricField();
+        }
+
+        // Calculate the electric field based on the charge's position
+        function calculateElectricField() {
+            const dx = charge.x - centerX;
+            const dy = charge.y - centerY;
+            const distance = Math.sqrt(dx * dx + dy * dy) * (sphereRadius / canvasRadius); // Adjust distance based on sphere radius
+
+            const q = getChargeValue();
+
+            let electricField;
+            let equation;
+
+            if (distance < sphereRadius) {
+                // Inside the sphere
+                electricField = (ke * q * distance) / Math.pow(sphereRadius, 3);
+                equation = "E = (k · Q · r) / R³";
+            } else if (Math.abs(distance - sphereRadius) < 0.01) {
+                // On the surface of the sphere
+                electricField = (ke * q) / Math.pow(sphereRadius, 2);
+                equation = "E = k · Q / R²";
+            } else {
+                // Outside the sphere
+                electricField = (ke * q) / Math.pow(distance, 2);
+                equation = "E = k · Q / r²";
+            }
+
+            // Format the electric field in scientific notation
+            const exponent = Math.floor(Math.log10(electricField));
+            const mantissa = (electricField / Math.pow(10, exponent)).toFixed(2);
+            const formattedField = `${mantissa} × 10<sup>${exponent}</sup>`;
+
+            // Update the output
+            document.getElementById("output").innerHTML = `Electric Field: ${formattedField} N/C | Equation: ${equation} | Distance: ${distance.toFixed(2)} m`;
+        }
+
+        // Update from inputs
+        function updateFromInputs() {
+            updateSphereRadius();
+            const distance = getDistanceValue();
+            charge.x = centerX + (distance * canvasRadius) / sphereRadius;
+            charge.y = centerY;
+            draw();
+        }
+
+        // Handle drag events
+        canvas.addEventListener("mousedown", (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const dx = x - charge.x;
+            const dy = y - charge.y;
+            if (Math.sqrt(dx * dx + dy * dy) < charge.radius) {
+                dragging = true;
+            }
+        });
+
+        canvas.addEventListener("mousemove", (e) => {
+            if (dragging) {
+                const rect = canvas.getBoundingClientRect();
+                charge.x = e.clientX - rect.left;
+                charge.y = e.clientY - rect.top;
+                draw();
+            }
+        });
+
+        canvas.addEventListener("mouseup", () => {
+            dragging = false;
+        });
+
+        canvas.addEventListener("mouseout", () => {
+            dragging = false;
+        });
+
+        // Initial draw
+        updateSphereRadius();
+        draw();
+    </script>
+</body>
+</html>

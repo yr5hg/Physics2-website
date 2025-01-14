@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - Chapter: Electric Flux and Fields</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+</script>
+
+    <style>
+        body {
+            color: #000;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .calculate-btn, .clear-btn {
+            flex: 1;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .clear-btn {
+            background-color: #dc3545;
+        }
+        .calculate-btn:hover {
+            background-color: #0056b3;
+        }
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+        .calculator {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #138496;
+        }
+        .unit-select {
+            margin-left: 10px;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .result-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .result-box.show {
+            display: block;
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator" class="active"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    
+    <section class="description">
+        <h2>Chapter 24 Calculator</h2>
+
+        <!-- Electric Flux with Angle -->
+        <div class="calculator">
+            <h3>1. Electric Flux with Angle</h3>
+            <p>Formula: \( \Phi = E \cdot A \cdot \cos(\theta) \)</p>
+            <form id="flux-angle-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="flux-e">Electric Field (E):</label>
+                    <input type="number" id="flux-e" step="any">
+                    <select id="flux-e-unit" class="unit-select">
+                        <option value="1">V/m</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="flux-a">Area (A):</label>
+                    <input type="number" id="flux-a" step="any">
+                    <select id="flux-a-unit" class="unit-select">
+                        <option value="1">m&sup2;</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="flux-theta">Angle (&theta;) in degrees:</label>
+                    <input type="number" id="flux-theta" step="any">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="flux-angle-result" class="result-box"></div>
+        </div>
+
+        <!-- Gauss's Law -->
+        <div class="calculator">
+            <h3>2. Gauss's Law</h3>
+            <p>Formula: \( \Phi = \frac{Q_{\text{enc}}}{\epsilon_0} \)</p>
+            <form id="gauss-law-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="gauss-q">Enclosed Charge (Q<sub>enc</sub>):</label>
+                    <input type="number" id="gauss-q" step="any">
+                    <select id="gauss-q-unit" class="unit-select">
+                        <option value="1">C</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="gauss-law-result" class="result-box"></div>
+        </div>
+
+        <!-- Electric Field from Line Charge -->
+        <div class="calculator">
+            <h3>3. Electric Field from Line Charge</h3>
+            <p>Formula: \( E = \frac{2 \cdot k_e \cdot \lambda}{r} \)</p>
+            <form id="line-charge-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="line-lambda">Linear Charge Density (&lambda;):</label>
+                    <input type="number" id="line-lambda" step="any">
+                    <select id="line-lambda-unit" class="unit-select">
+                        <option value="1">C/m</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="line-r">Distance (r):</label>
+                    <input type="number" id="line-r" step="any">
+                    <select id="line-r-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="line-charge-result" class="result-box"></div>
+        </div>
+
+        <!-- Electric Field from Surface Charge -->
+        <div class="calculator">
+            <h3>4. Electric Field from Surface Charge</h3>
+            <p>Formula: \( E = \frac{\sigma}{2 \cdot \epsilon_0} \)</p>
+            <form id="surface-charge-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="surface-sigma">Surface Charge Density (&sigma;):</label>
+                    <input type="number" id="surface-sigma" step="any">
+                    <select id="surface-sigma-unit" class="unit-select">
+                        <option value="1">C/m&sup2;</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="surface-charge-result" class="result-box"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">Back</a>
+
+    </section>
+    <script>
+       // Constants
+const KE = 8.99e9; // Coulomb constant
+const EPSILON_0 = 8.854e-12; // Permittivity of free space
+const DEG_TO_RAD = Math.PI / 180; // Conversion factor from degrees to radians
+
+// Helper function to get input value with unit conversion
+function getValueWithUnit(inputId, unitId) {
+    const value = parseFloat(document.getElementById(inputId).value);
+    const unit = parseFloat(document.getElementById(unitId).value);
+    return value * unit;
+}
+
+// Helper function to format result in scientific notation
+function formatScientific(value) {
+    if (value === 0) return "0.00";
+    if (value >= 1 && value < 10) {
+        return `${value.toFixed(2)}`;
+    } else {
+        const exponent = Math.floor(Math.log10(Math.abs(value)));
+        const mantissa = value / Math.pow(10, exponent);
+        return `${mantissa.toFixed(2)} &times; 10<sup>${exponent}</sup>`;
+    }
+}
+
+// Function to display result
+function displayResult(elementId, result) {
+    const resultBox = document.getElementById(elementId);
+    resultBox.innerHTML = result;
+    resultBox.classList.add('show');
+}
+
+// Function to clear result
+function clearResult(elementId) {
+    document.getElementById(elementId).innerHTML = '';
+}
+
+// 1. Electric Flux with Angle: Φ = E * A * cos(θ)
+function calculateFluxAngle() {
+    const E = getValueWithUnit('flux-e', 'flux-e-unit');
+    const A = getValueWithUnit('flux-a', 'flux-a-unit');
+    const theta = parseFloat(document.getElementById('flux-theta').value);
+
+    if (isNaN(E) || isNaN(A) || isNaN(theta)) {
+        displayResult('flux-angle-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const thetaRad = theta * DEG_TO_RAD;
+    const flux = E * A * Math.cos(thetaRad);
+    const adjustedFlux = Math.abs(flux) < 1e-12 ? 0 : flux;
+    displayResult('flux-angle-result', formatScientific(adjustedFlux) + ' N·m²/C');
+}
+
+function clearFluxAngle() {
+    document.getElementById('flux-e').value = '';
+    document.getElementById('flux-a').value = '';
+    document.getElementById('flux-theta').value = '';
+    clearResult('flux-angle-result');
+}
+
+// 2. Gauss's Law: Φ = Q_enc / ε_0
+function calculateGaussLaw() {
+    const Q_enc = getValueWithUnit('gauss-q', 'gauss-q-unit');
+
+    if (isNaN(Q_enc)) {
+        displayResult('gauss-law-result', 'Error: Please enter a valid charge.');
+        return;
+    }
+
+    const flux = Q_enc / EPSILON_0;
+    displayResult('gauss-law-result', formatScientific(flux) + ' N·m²/C');
+}
+
+function clearGaussLaw() {
+    document.getElementById('gauss-q').value = '';
+    clearResult('gauss-law-result');
+}
+
+// 3. Electric Field from Line Charge: E = (2 * k_e * λ) / r
+function calculateLineCharge() {
+    const lambda = getValueWithUnit('line-lambda', 'line-lambda-unit');
+    const r = getValueWithUnit('line-r', 'line-r-unit');
+
+    if (isNaN(lambda) || isNaN(r) || r === 0) {
+        displayResult('line-charge-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const E = (2 * KE * lambda) / r;
+    displayResult('line-charge-result', formatScientific(E) + ' N/C');
+}
+
+function clearLineCharge() {
+    document.getElementById('line-lambda').value = '';
+    document.getElementById('line-r').value = '';
+    clearResult('line-charge-result');
+}
+
+// 4. Electric Field from Surface Charge: E = σ / (2 * ε_0)
+function calculateSurfaceCharge() {
+    const sigma = getValueWithUnit('surface-sigma', 'surface-sigma-unit');
+
+    if (isNaN(sigma)) {
+        displayResult('surface-charge-result', 'Error: Please enter a valid surface charge density.');
+        return;
+    }
+
+    const E = sigma / (2 * EPSILON_0);
+    displayResult('surface-charge-result', formatScientific(E) + ' N/C');
+}
+
+function clearSurfaceCharge() {
+    document.getElementById('surface-sigma').value = '';
+    clearResult('surface-charge-result');
+}
+
+// Attach event listeners on page load
+function attachEventListeners() {
+    document.querySelector('#flux-angle-form .calculate-btn').addEventListener('click', calculateFluxAngle);
+    document.querySelector('#flux-angle-form .clear-btn').addEventListener('click', clearFluxAngle);
+
+    document.querySelector('#gauss-law-form .calculate-btn').addEventListener('click', calculateGaussLaw);
+    document.querySelector('#gauss-law-form .clear-btn').addEventListener('click', clearGaussLaw);
+
+    document.querySelector('#line-charge-form .calculate-btn').addEventListener('click', calculateLineCharge);
+    document.querySelector('#line-charge-form .clear-btn').addEventListener('click', clearLineCharge);
+
+    document.querySelector('#surface-charge-form .calculate-btn').addEventListener('click', calculateSurfaceCharge);
+    document.querySelector('#surface-charge-form .clear-btn').addEventListener('click', clearSurfaceCharge);
+}
+
+// Attach listeners when page loads
+window.onload = attachEventListeners;
+
+
+    </script>
+</body>
+</html>

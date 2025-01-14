@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics 2 Guide - Chapter 27</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* تحسين لون العناوين */
+        article h3 {
+            color: #0056b3; /* لون أزرق كما في الصفحات الأخرى */
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        body {
+            color: #333; /* لون النصوص الأساسي */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory" class="active"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 27: Current and Resistance</h2>
+        <article>
+            <h3>Electric Current</h3>
+            <p>Electric current (\( I \)) is the rate of flow of electric charge. It is given by:</p>
+            <p>
+                $$ I = \frac{\Delta Q}{\Delta t} $$
+            </p>
+            <p>Key points:</p>
+            <ul>
+                <li>The SI unit of current is the ampere (A).</li>
+                <li>Conventional current flows in the direction of positive charges.</li>
+                <li>The relationship between drift velocity and current is:</li>
+                <p>
+                    $$ I = nqv_dA $$
+                </p>
+            </ul>
+        </article>
+        <article>
+            <h3>Resistance</h3>
+            <p>Resistance (\( R \)) is the opposition to the flow of current. It is given by Ohm's Law:</p>
+            <p>
+                $$ R = \frac{\Delta V}{I} $$
+            </p>
+            <p>Key points:</p>
+            <ul>
+                <li>SI unit: ohms (\( \Omega \)), where \( 1 \Omega = 1 \text{V}/\text{A} \).</li>
+                <li>Resistivity (\( \rho \)) is a material property, related to resistance by:</li>
+                <p>
+                    $$ R = \rho \frac{L}{A} $$
+                </p>
+                <li>Conductivity (\( \sigma \)) is the inverse of resistivity:</li>
+                <p>
+                    $$ \sigma = \frac{1}{\rho} $$
+                </p>
+            </ul>
+        </article>
+        <article>
+            <h3>Temperature and Resistance</h3>
+            <p>The resistance of a conductor changes with temperature. It is given by:</p>
+            <p>
+                $$ R = R_0 [1 + \alpha (T - T_0)] $$
+            </p>
+            <p>Key points:</p>
+            <ul>
+                <li>\( R_0 \): Resistance at reference temperature (\( T_0 \)).</li>
+                <li>\( \alpha \): Temperature coefficient of resistivity.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Electrical Power</h3>
+            <p>The power (\( P \)) delivered by a resistor is given by:</p>
+            <p>
+                $$ P = I \Delta V $$
+            </p>
+            <p>Alternative forms using Ohm's Law:</p>
+            <p>
+                $$ P = I^2 R = \frac{(\Delta V)^2}{R} $$
+            </p>
+        </article>
+        <a href="index.html#theory" class="btn fade-in">Back</a>
+    </section>
+</body>
+</html>

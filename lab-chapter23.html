@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics 2 Guide - Chapter 23: Physics Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('physics-background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000000;  
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .lab-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #forceOutput, #distanceOutput {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .input-section {
+            margin: 20px 0;
+        }
+
+        input {
+            width: 60px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .formula-section {
+            margin: 20px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .result-section {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #000;
+        }
+
+        sup {
+            font-size: smaller;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Physics Lab - Chapter 23: Electric Fields</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="theory-chapter23.html"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="lab-chapter23.html" class="active"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="calculator-chapter23.html"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="quiz-chapter23.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="lab-section">
+        <h2>Interactive Experiment: Coulomb's Law</h2>
+        <p>Drag the charges to change their distance and observe the force dynamically. Each charge can be modified below.</p>
+        
+        <div class="input-section">
+            <label for="charge1">Charge 1 (&#181;C):</label>
+            <input type="number" id="charge1" value="1" step="0.1">
+            
+            <label for="charge2">Charge 2 (&#181;C):</label>
+            <input type="number" id="charge2" value="-1" step="0.1">
+            
+            <button class="btn" onclick="updateCharges()">Update Charges</button>
+        </div>
+
+        <canvas id="coulombCanvas" width="600" height="400"></canvas>
+        <p id="distanceOutput">Distance: 0 m</p>
+        <p id="forceOutput">Force: 0 N</p>
+        <div class="result-section">
+            <p><strong>Observations:</strong></p>
+            <ul>
+                <li>The force increases with larger charges.</li>
+                <li>The force decreases as the distance between charges increases.</li>
+            </ul>
+        </div>
+        <a href="index.html#lab" class="btn fade-in">Back to Main</a>
+    </section>
+
+    <script>
+        const canvas = document.getElementById("coulombCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const k = 8.99e9;
+
+        
+        const charges = [
+            { x: 150, y: 200, radius: 20, color: "red", charge: 1 },  // 1 µC
+            { x: 450, y: 200, radius: 20, color: "blue", charge: -1 } // -1 µC
+        ];
+
+        let draggingCharge = null;
+
+         
+        function formatScientific(value) {
+            if (value === 0) return "0";
+            const exponent = Math.floor(Math.log10(Math.abs(value)));
+            const mantissa = value / Math.pow(10, exponent);
+            return `${mantissa.toFixed(2)} \u00d7 10<sup>${exponent}</sup>`;
+        }
+
+           
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                
+            ctx.beginPath();
+            ctx.moveTo(charges[0].x, charges[0].y);
+            ctx.lineTo(charges[1].x, charges[1].y);
+            ctx.strokeStyle = "black";
+            ctx.stroke();
+
+                
+            const midX = (charges[0].x + charges[1].x) / 2;
+            const midY = (charges[0].y + charges[1].y) / 2;
+            const distance = calculateDistance();
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText(`${distance.toFixed(2)} m`, midX, midY - 10);
+
+              
+            charges.forEach(charge => {
+                ctx.beginPath();
+                ctx.arc(charge.x, charge.y, charge.radius, 0, 2 * Math.PI);
+                ctx.fillStyle = charge.color;
+                ctx.fill();
+                ctx.stroke();
+            });
+
+              
+            updateForce();
+        }
+
+            
+        function calculateDistance() {
+            const dx = charges[1].x - charges[0].x;
+            const dy = charges[1].y - charges[0].y;
+            return Math.sqrt(dx * dx + dy * dy) / 100;     
+        }
+
+           
+        function updateForce() {
+            const r = calculateDistance();
+            const q1 = charges[0].charge * 1e-6;     
+            const q2 = charges[1].charge * 1e-6; 
+
+            if (r === 0) {
+                document.getElementById("forceOutput").innerHTML = "Force: Infinity (Distance cannot be zero)";
+                document.getElementById("distanceOutput").textContent = "Distance: 0 m";
+                return;
+            }
+
+            const force = (k * Math.abs(q1 * q2)) / (r * r); // القوة بالنيوتن
+            document.getElementById("distanceOutput").textContent = `Distance: ${r.toFixed(2)} m`;
+            document.getElementById("forceOutput").innerHTML = `Force: ${formatScientific(force)} N`;
+        }
+
+        
+        function updateCharges() {
+            const charge1Input = document.getElementById("charge1").value;
+            const charge2Input = document.getElementById("charge2").value;
+            charges[0].charge = parseFloat(charge1Input);
+            charges[1].charge = parseFloat(charge2Input);
+            draw();
+        }
+        
+        function isInsideCharge(x, y, charge) {
+            const dx = x - charge.x;
+            const dy = y - charge.y;
+            return Math.sqrt(dx * dx + dy * dy) <= charge.radius;
+        }
+
+        canvas.addEventListener("mousedown", (event) => {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+
+            draggingCharge = charges.find(charge => isInsideCharge(mouseX, mouseY, charge));
+        });
+
+        canvas.addEventListener("mousemove", (event) => {
+            if (draggingCharge) {
+                const rect = canvas.getBoundingClientRect();
+                draggingCharge.x = event.clientX - rect.left;
+                draggingCharge.y = event.clientY - rect.top;
+                draw();
+            }
+        });
+
+        canvas.addEventListener("mouseup", () => {
+            draggingCharge = null;
+        });
+
+        canvas.addEventListener("mouseout", () => {
+            draggingCharge = null;
+        });
+
+        draw();
+    </script>
+</body>
+</html>

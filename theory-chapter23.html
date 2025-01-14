@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics 2 Guide - Chapter 23</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('physics-background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000000; /* تغيير النصوص للون الأسود */
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .description {
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .description h2 {
+            font-size: 28px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .description p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        article {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        article h3 {
+            color: #0056b3;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        article p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        article ul {
+            padding-left: 20px;
+        }
+
+        article ul li {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory" class="active"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 23: Electric Fields</h2>
+        <article>
+            <h3>Introduction to Electric Fields</h3>
+            <p>Electric fields describe the influence that a charged object has on other charges around it. They are represented using field lines that show the direction and strength of the field. Positive charges create fields that point away, while negative charges create fields that point toward them. Understanding electric fields is crucial for exploring more complex phenomena in electromagnetism and circuit analysis.</p>
+        </article>
+        <article>
+            <h3>Properties of Electric Charges</h3>
+            <p>There are two types of electric charges: positive and negative. Like charges repel each other, while opposite charges attract. The properties of electric charge play a fundamental role in understanding interactions in physics:</p>
+            <ul>
+                <li><strong>Charge Conservation:</strong> The total charge in an isolated system remains constant, irrespective of the changes occurring within the system.</li>
+                <li><strong>Charge Quantization:</strong> Electric charge exists in discrete packets, with the smallest unit being \( e = 1.6 \times 10^{-19} \, C \).</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Coulomb's Law</h3>
+            <p>The force between two point charges is described by Coulomb's law:</p>
+            <p>
+                $$ F = k \frac{|q_1 q_2|}{r^2} $$
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( F \): The magnitude of the force between the charges (N).</li>
+                <li>\( k \): Coulomb's constant (\( 8.99 \times 10^9 \, \text{N}\cdot\text{m}^2/\text{C}^2 \)).</li>
+                <li>\( q_1, q_2 \): The magnitudes of the charges (C).</li>
+                <li>\( r \): The distance between the charges (m).</li>
+            </ul>
+            <p><strong>Example:</strong> If \( q_1 = 1C \), \( q_2 = -1C \), and \( r = 1m \), the force is:</p>
+            <p>
+                $$ F = 8.99 \times 10^9 \, \text{N}\cdot\text{m}^2/\text{C}^2 \times \frac{|1 \cdot -1|}{1^2} = 8.99 \times 10^9 \, N $$
+            </p>
+        </article>
+        <article>
+            <h3>Electric Field</h3>
+            <p>The electric field at a point is defined as the force per unit charge. It provides a way to visualize and calculate the effects of charges in space:</p>
+            <p>
+                $$ E = \frac{F}{q} $$
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( E \): The electric field (N/C).</li>
+                <li>\( F \): The force experienced by a test charge (N).</li>
+                <li>\( q \): The test charge (C).</li>
+            </ul>
+            <p>The electric field produced by a point charge can also be calculated as:</p>
+            <p>
+                $$ E = k \frac{q}{r^2} $$
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( q \): The charge creating the electric field (C).</li>
+                <li>\( r \): The distance from the charge to the point of interest (m).</li>
+            </ul>
+            <p>The direction of the electric field depends on the nature of the charge creating it. For positive charges, the field points away, while for negative charges, it points inward.</p>
+        </article>
+        <a href="index.html#theory" class="btn fade-in">Back</a>
+    </section>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - Chapter: Electric Potential and Energy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+</script>
+    <style>
+        body {
+            color: #000;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .calculate-btn, .clear-btn {
+            flex: 1;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .clear-btn {
+            background-color: #dc3545;
+        }
+        .calculate-btn:hover {
+            background-color: #0056b3;
+        }
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+        .calculator {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #138496;
+        }
+        .unit-select {
+            margin-left: 10px;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .result-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .result-box.show {
+            display: block;
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator" class="active"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    
+    <section class="description">
+        <h2>Chapter 25 Calculator</h2>
+
+        <!-- Electric Potential Difference -->
+        <div class="calculator">
+            <h3>1. Electric Potential Difference</h3>
+            <p>Formula: \( \Delta V = - E \cdot d \)</p>
+            <form id="potential-difference-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="potential-e">Electric Field (E):</label>
+                    <input type="number" id="potential-e" step="any">
+                    <select id="potential-e-unit" class="unit-select">
+                        <option value="1">V/m</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="potential-d">Distance (d):</label>
+                    <input type="number" id="potential-d" step="any">
+                    <select id="potential-d-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="potential-difference-result" class="result-box"></div>
+        </div>
+
+        <!-- Change in Electric Potential Energy -->
+        <div class="calculator">
+            <h3>2. Change in Electric Potential Energy</h3>
+            <p>Formula: \( \Delta U = q \cdot \Delta V \)</p>
+            <form id="potential-energy-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="energy-q">Charge (q):</label>
+                    <input type="number" id="energy-q" step="any">
+                    <select id="energy-q-unit" class="unit-select">
+                        <option value="1">C</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="energy-dv">Potential Difference (\( \Delta V \)):</label>
+                    <input type="number" id="energy-dv" step="any">
+                    <select id="energy-dv-unit" class="unit-select">
+                        <option value="1">V</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="potential-energy-result" class="result-box"></div>
+        </div>
+
+        <!-- Electric Potential from a Single Charge -->
+        <div class="calculator">
+            <h3>3. Electric Potential from a Single Charge</h3>
+            <p>Formula: \( V = \frac{k_e \cdot q}{r} \)</p>
+            <form id="single-charge-potential-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="single-q">Charge (q):</label>
+                    <input type="number" id="single-q" step="any">
+                    <select id="single-q-unit" class="unit-select">
+                        <option value="1">C</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="single-r">Distance (r):</label>
+                    <input type="number" id="single-r" step="any">
+                    <select id="single-r-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="single-charge-potential-result" class="result-box"></div>
+        </div>
+
+        <!-- Electric Potential Energy between Two Charges -->
+        <div class="calculator">
+            <h3>4. Electric Potential Energy between Two Charges</h3>
+            <p>Formula: \( U = \frac{k_e \cdot q_1 \cdot q_2}{r_{12}} \)</p>
+            <form id="two-charge-energy-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="two-q1">Charge 1 (q<sub>1</sub>):</label>
+                    <input type="number" id="two-q1" step="any">
+                    <select id="two-q1-unit" class="unit-select">
+                        <option value="1">C</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="two-q2">Charge 2 (q<sub>2</sub>):</label>
+                    <input type="number" id="two-q2" step="any">
+                    <select id="two-q2-unit" class="unit-select">
+                        <option value="1">C</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="two-r">Distance (r<sub>12</sub>):</label>
+                    <input type="number" id="two-r" step="any">
+                    <select id="two-r-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="two-charge-energy-result" class="result-box"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">Back</a>
+    </section>
+    <script>
+        // Constants
+const KE = 8.99e9; // Coulomb constant
+
+// Helper function to get input value with unit conversion
+function getValueWithUnit(inputId, unitId) {
+    const value = parseFloat(document.getElementById(inputId).value);
+    const unit = parseFloat(document.getElementById(unitId).value);
+    return value * unit;
+}
+
+// Helper function to format result in scientific notation
+function formatScientific(value) {
+    if (value === 0) return "0.00";
+    if (value >= 1 && value < 10) {
+        return `${value.toFixed(2)}`;
+    } else {
+        const exponent = Math.floor(Math.log10(Math.abs(value)));
+        const mantissa = value / Math.pow(10, exponent);
+        return `${mantissa.toFixed(2)} &times; 10<sup>${exponent}</sup>`;
+    }
+}
+
+// Function to display result
+function displayResult(elementId, result) {
+    const resultBox = document.getElementById(elementId);
+    resultBox.innerHTML = result;
+    resultBox.classList.add('show');
+}
+
+// Function to clear result
+function clearResult(elementId) {
+    document.getElementById(elementId).innerHTML = '';
+}
+
+// 1. Electric Potential Difference: ΔV = -E * d
+function calculatePotentialDifference() {
+    const E = getValueWithUnit('potential-e', 'potential-e-unit');
+    const d = getValueWithUnit('potential-d', 'potential-d-unit');
+
+    if (isNaN(E) || isNaN(d)) {
+        displayResult('potential-difference-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const deltaV = -E * d;
+    displayResult('potential-difference-result', formatScientific(deltaV) + ' V');
+}
+
+function clearPotentialDifference() {
+    document.getElementById('potential-e').value = '';
+    document.getElementById('potential-d').value = '';
+    clearResult('potential-difference-result');
+}
+
+// 2. Change in Electric Potential Energy: ΔU = q * ΔV
+function calculatePotentialEnergyChange() {
+    const q = getValueWithUnit('energy-q', 'energy-q-unit');
+    const deltaV = getValueWithUnit('energy-dv', 'energy-dv-unit');
+
+    if (isNaN(q) || isNaN(deltaV)) {
+        displayResult('potential-energy-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const deltaU = q * deltaV;
+    displayResult('potential-energy-result', formatScientific(deltaU) + ' J');
+}
+
+function clearPotentialEnergyChange() {
+    document.getElementById('energy-q').value = '';
+    document.getElementById('energy-dv').value = '';
+    clearResult('potential-energy-result');
+}
+
+// 3. Electric Potential from a Single Charge: V = (ke * q) / r
+function calculateSingleChargePotential() {
+    const q = getValueWithUnit('single-q', 'single-q-unit');
+    const r = getValueWithUnit('single-r', 'single-r-unit');
+
+    if (isNaN(q) || isNaN(r) || r === 0) {
+        displayResult('single-charge-potential-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const V = (KE * q) / r;
+    displayResult('single-charge-potential-result', formatScientific(V) + ' V');
+}
+
+function clearSingleChargePotential() {
+    document.getElementById('single-q').value = '';
+    document.getElementById('single-r').value = '';
+    clearResult('single-charge-potential-result');
+}
+
+// 4. Electric Potential Energy between Two Charges: U = (ke * q1 * q2) / r12
+function calculateTwoChargeEnergy() {
+    const q1 = getValueWithUnit('two-q1', 'two-q1-unit');
+    const q2 = getValueWithUnit('two-q2', 'two-q2-unit');
+    const r12 = getValueWithUnit('two-r', 'two-r-unit');
+
+    if (isNaN(q1) || isNaN(q2) || isNaN(r12) || r12 === 0) {
+        displayResult('two-charge-energy-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const U = (KE * q1 * q2) / r12;
+    displayResult('two-charge-energy-result', formatScientific(U) + ' J');
+}
+
+function clearTwoChargeEnergy() {
+    document.getElementById('two-q1').value = '';
+    document.getElementById('two-q2').value = '';
+    document.getElementById('two-r').value = '';
+    clearResult('two-charge-energy-result');
+}
+
+// Attach event listeners on page load
+function attachEventListeners() {
+    document.querySelector('#potential-difference-form .calculate-btn').addEventListener('click', calculatePotentialDifference);
+    document.querySelector('#potential-difference-form .clear-btn').addEventListener('click', clearPotentialDifference);
+
+    document.querySelector('#potential-energy-form .calculate-btn').addEventListener('click', calculatePotentialEnergyChange);
+    document.querySelector('#potential-energy-form .clear-btn').addEventListener('click', clearPotentialEnergyChange);
+
+    document.querySelector('#single-charge-potential-form .calculate-btn').addEventListener('click', calculateSingleChargePotential);
+    document.querySelector('#single-charge-potential-form .clear-btn').addEventListener('click', clearSingleChargePotential);
+
+    document.querySelector('#two-charge-energy-form .calculate-btn').addEventListener('click', calculateTwoChargeEnergy);
+    document.querySelector('#two-charge-energy-form .clear-btn').addEventListener('click', clearTwoChargeEnergy);
+}
+
+// Attach listeners when page loads
+window.onload = attachEventListeners;
+
+    </script>
+</body>
+</html>

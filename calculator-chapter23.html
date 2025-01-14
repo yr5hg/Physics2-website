@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - Chapter 23</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+    </script>
+    <style>
+        body {
+            color: #000; /* نص باللون الأسود */
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .calculate-btn, .clear-btn {
+            flex: 1;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .clear-btn {
+            background-color: #dc3545;
+        }
+        .calculate-btn:hover {
+            background-color: #0056b3;
+        }
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+        .calculator {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #138496;
+        }
+        .result-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    display: none; /* يبدأ مخفيًا */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.result-box.show {
+    display: block;
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator" class="active"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    
+    <section class="description">
+        <h2>Chapter 23 Calculator</h2>
+
+        <!-- Coulomb's Law Calculator -->
+        <div class="calculator">
+            <h3>1. Coulomb's Law</h3>
+            <p>Formula: \( F = \frac{k_e |q_1 q_2|}{r^2} \)</p>
+            <form id="coulomb-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="q1">Charge 1 \( q_1 \):</label>
+                    <input type="number" id="q1" step="any">
+                    <select id="q1-unit">
+                        <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+                        <option value="1e-6">\( \mu C \)</option>
+                        <option value="1e-9">nC</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="q2">Charge 2 \( q_2 \):</label>
+                    <input type="number" id="q2" step="any">
+                    <select id="q2-unit">
+                        <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+                        <option value="1e-6">\( \mu C \)</option>
+                        <option value="1e-9">nC</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="distance-coulomb">Distance \( r \):</label>
+                    <input type="number" id="distance-coulomb" step="any">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="coulomb-result" class="result-box"></div>
+        </div>
+        
+        <!-- Electric Field Calculator -->
+        <div class="calculator">
+            <h3>2. Electric Field Calculator</h3>
+            <p>Formula: \( E = \frac{k_e |q|}{r^2} \)</p>
+            <form id="electric-field-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="ef-charge">Charge \( q \):</label>
+                    <input type="number" id="ef-charge" step="any">
+                    <select id="ef-charge-unit">
+                        <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+                        <option value="1e-6">\( \mu C \)</option>
+                        <option value="1e-9">nC</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="ef-distance">Distance \( r \):</label>
+                    <input type="number" id="ef-distance" step="any">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="electric-field-result" class="result-box"></div>
+        </div>
+
+        <!-- Electric Field of a Uniformly Charged Rod -->
+        <div class="calculator">
+            <h3>3. Electric Field of a Uniformly Charged Rod</h3>
+            <p>Formula: \( E = \frac{k_e Q}{a(\ell + a)} \)</p>
+            <form id="rod-field-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="rod-charge">Total Charge \( Q \):</label>
+                    <input type="number" id="rod-charge" step="any">
+                    <select id="rod-charge-unit">
+                        <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+                        <option value="1e-6">\( \mu C \)</option>
+                        <option value="1e-9">nC</option>
+                    </select>
+                </div>                
+                <div class="form-control">
+                    <label for="rod-length">Length \( \ell \):</label>
+                    <input type="number" id="rod-length" step="any">
+                </div>
+                <div class="form-control">
+                    <label for="rod-distance">Distance \( a \):</label>
+                    <input type="number" id="rod-distance" step="any">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="rod-field-result" class="result-box"></div>
+        </div>
+
+        <!-- Electric Field of a Uniform Ring of Charge -->
+        <div class="calculator">
+            <h3>4. Electric Field of a Uniform Ring of Charge</h3>
+            <p>Formula: \( E = \frac{k_e x Q}{(a^2 + x^2)^{3/2}} \)</p>
+            <form id="ring-field-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="ring-charge">Total Charge \( Q \):</label>
+                    <input type="number" id="ring-charge" step="any">
+                    <select id="ring-charge-unit">
+                        <option value="1">C</option>
+                        <option value="1e-3">mC</option>
+                        <option value="1e-6">\( \mu C \)</option>
+                        <option value="1e-9">nC</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="ring-radius">Radius \( a \):</label>
+                    <input type="number" id="ring-radius" step="any">
+                </div>
+                <div class="form-control">
+                    <label for="ring-distance">Distance \( x \):</label>
+                    <input type="number" id="ring-distance" step="any">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="ring-field-result" class="result-box"></div>
+        </div>
+
+        <!-- Electric Field of a Uniformly Charged Disk -->
+        <div class="calculator">
+            <h3>5. Electric Field of a Uniformly Charged Disk</h3>
+            <p>Formula: \( E_x = 2 \pi k_e \sigma \left( 1 - \frac{x}{(R^2 + x^2)^{1/2}} \right) \)</p>
+            <form id="disk-field-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="disk-density">Surface Charge Density \( \sigma \):</label>
+                    <input type="number" id="disk-density" step="any">
+                </div>
+                <div class="form-control">
+                    <label for="disk-radius">Radius \( R \):</label>
+                    <input type="number" id="disk-radius" step="any">
+                    
+                </div>
+                <div class="form-control">
+                    <label for="disk-distance">Distance \( x \):</label>
+                    <input type="number" id="disk-distance" step="any">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="disk-field-result" class="result-box"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">Back</a>
+
+    </section>
+    <script type="text/javascript">
+ function formatScientific(value) {
+    if (value === 0) return "0.00"; // إذا كانت القيمة صفرًا، نعرض "0.00" مباشرة
+    if (value >=1 && value < 10) {
+        return `result= ${value.toFixed(2)}`; // عرض الأرقام العادية بدون تنسيق علمي إذا كانت في النطاق المناسب
+    }
+     else{
+    const exponent = Math.floor(Math.log10(Math.abs(value)));
+    const mantissa = value / Math.pow(10, exponent);
+    return `result= ${mantissa.toFixed(2)} × 10<sup>${exponent}</sup>`; // تنسيق الصيغة العلمية للأرقام خارج النطاق
+     }
+}
+
+
+function displayResult(elementId, result) {
+    const resultBox = document.getElementById(elementId);
+    resultBox.innerHTML = result;
+    resultBox.classList.add('show');
+
+  
+}
+
+// Coulomb's Law: F = (k_e * |q1 * q2|) / r^2
+function calculateCoulombsLaw() {
+    const k_e = 8.99e9; // Coulomb constant in N·m²/C²
+    const q1 = parseFloat(document.getElementById('q1').value) * parseFloat(document.getElementById('q1-unit').value);
+    const q2 = parseFloat(document.getElementById('q2').value) * parseFloat(document.getElementById('q2-unit').value);
+    const r = parseFloat(document.getElementById('distance-coulomb').value);
+
+    if (isNaN(q1) || isNaN(q2) || isNaN(r) || r <= 0) {
+        displayResult('coulomb-result', 'Please enter valid positive numbers for all fields.', 'error');
+    return;
+
+    }
+
+    const force = (k_e * Math.abs(q1 * q2)) / (r * r);
+    displayResult('coulomb-result', `${formatScientific(force)} N`);
+}
+
+// Electric Field: E = (k_e * |q|) / r^2
+function calculateElectricField() {
+    const k_e = 8.99e9; // Coulomb constant in N·m²/C²
+    const q = parseFloat(document.getElementById('ef-charge').value) * parseFloat(document.getElementById('ef-charge-unit').value);
+    const r = parseFloat(document.getElementById('ef-distance').value);
+
+    if (isNaN(q) || isNaN(r) || r <= 0) {
+        displayResult('electric-field-result', 'Please enter valid positive numbers for all fields.', 'error');
+    return;
+
+    }
+
+    const electricField = (k_e * Math.abs(q)) / (r * r);
+    displayResult('electric-field-result', `${formatScientific(electricField)} N/C`);
+}
+
+// Electric Field of a Uniformly Charged Rod: E = (k_e * Q) / (a * (l + a))
+function calculateRodField() {
+    const k_e = 8.99e9; // Coulomb constant in N·m²/C²
+    const Q = parseFloat(document.getElementById('rod-charge').value) * parseFloat(document.getElementById('rod-charge-unit').value);
+    const l = parseFloat(document.getElementById('rod-length').value);
+    const a = parseFloat(document.getElementById('rod-distance').value);
+
+    if (isNaN(Q) || isNaN(l) || isNaN(a) || l <= 0 || a <= 0) {
+        displayResult('rod-field-result', 'Please enter valid positive numbers for all fields.', 'error');
+    return;
+
+    }
+
+    const electricField = (k_e * Q) / (a * (l + a));
+    displayResult('rod-field-result', `${formatScientific(electricField)} N/C`);
+}
+
+// Electric Field of a Uniform Ring of Charge: E = (k_e * x * Q) / (a^2 + x^2)^(3/2)
+function calculateRingField() {
+    const k_e = 8.99e9; // Coulomb constant in N·m²/C²
+    const Q = parseFloat(document.getElementById('ring-charge').value) * parseFloat(document.getElementById('ring-charge-unit').value);
+    const a = parseFloat(document.getElementById('ring-radius').value);
+    const x = parseFloat(document.getElementById('ring-distance').value);
+
+    if (isNaN(Q) || isNaN(a) || isNaN(x) || a <= 0 || x <= 0) {
+        displayResult('ring-field-result', 'Please enter valid positive numbers for all fields.', 'error');
+    return;
+
+    }
+
+    const electricField = (k_e * x * Q) / Math.pow((a * a + x * x), 1.5);
+    displayResult('ring-field-result', `${formatScientific(electricField)} N/C`);
+}
+
+// Electric Field of a Uniformly Charged Disk: E_x = 2 * pi * k_e * sigma * (1 - (x / sqrt(R^2 + x^2)))
+function calculateDiskField() {
+    const k_e = 8.99e9; // Coulomb constant in N·m²/C²
+    const sigma = parseFloat(document.getElementById('disk-density').value);
+    const R = parseFloat(document.getElementById('disk-radius').value);
+    const x = parseFloat(document.getElementById('disk-distance').value);
+
+    if (isNaN(sigma) || isNaN(R) || isNaN(x) || R <= 0 || x <= 0) {
+        displayResult('disk-field-result', 'Please enter valid positive numbers for all fields.', 'error');
+    return;
+
+    }
+
+    const electricField = 2 * Math.PI * k_e * sigma * (1 - (x / Math.sqrt(R * R + x * x)));
+    displayResult('disk-field-result', `${formatScientific(electricField)} N/C`);
+}
+
+// Event listeners for calculate buttons
+document.querySelector('#coulomb-form .calculate-btn').addEventListener('click', calculateCoulombsLaw);
+document.querySelector('#electric-field-form .calculate-btn').addEventListener('click', calculateElectricField);
+document.querySelector('#rod-field-form .calculate-btn').addEventListener('click', calculateRodField);
+document.querySelector('#ring-field-form .calculate-btn').addEventListener('click', calculateRingField);
+document.querySelector('#disk-field-form .calculate-btn').addEventListener('click', calculateDiskField);
+
+// Event listeners for clear buttons
+document.querySelectorAll('.clear-btn').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const form = e.target.closest('form');
+        form.reset(); // إعادة تعيين جميع الحقول في النموذج
+
+        // مسح أي مدخلات من النوع input داخل النموذج
+        form.querySelectorAll('input').forEach(input => {
+            input.value = '';
+        });
+
+        // مسح النتيجة المعروضة داخل نفس النموذج فقط
+        const resultElement = form.querySelector('.result');
+        if (resultElement) {
+            resultElement.innerHTML = ''; // تفريغ محتوى النتيجة
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+
+/* تصميم الخلفية */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: url('physics-background2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff; /* يجعل النصوص واضحة */
+}
+
+@keyframes gradient {
+    0% { background: linear-gradient(120deg, #e8f1ff, #d4e4fa); }
+    100% { background: linear-gradient(120deg, #d4e4fa, #e8f1ff); }
+}
+
+/* الهيدر */
+header {
+    background: linear-gradient(120deg, #0056b3, #007bff);
+    color: white;
+    padding: 20px 10px;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+header p {
+    font-size: 18px;
+    margin: 10px 0 0;
+}
+
+/* شريط الخيارات */
+.main-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 86, 179, 0.8);
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav ul li {
+    margin: 0 15px;
+}
+
+.main-nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.main-nav ul li a:hover {
+    background-color: #003366; /* لون أزرق أغمق */
+    color: #ffffff;
+    transform: scale(1.1); /* تكبير بسيط */
+}
+
+/* وصف القسم */
+.description {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* لون أبيض مع شفافية */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 100px; /* تثبيت الوصف أثناء التمرير */
+    z-index: 1000;
+}
+
+.description h2 {
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.description p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* تصميم التشابتر */
+.chapters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.chapters .chapter {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.chapters .chapter:hover {
+    background: linear-gradient(120deg, #e6f7ff, #d4e4fa);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.chapters .chapter h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #004080;
+}
+
+.chapters .chapter p {
+    margin: 10px 0 0;
+    color: #555;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* الأنيميشن */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+/* تمييز العنصر المحدد */
+.main-nav a.active {
+    background-color: #0056b3;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+/* الزر */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #003366;
+    transform: scale(1.05);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* تنسيق المقالات */
+article {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+article h3 {
+    color: #0056b3;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+article p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+article ul {
+    padding-left: 20px;
+}
+
+article ul li {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #0056b3;
+    font-size: 24px;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.icons a:hover {
+    color: #003366;
+    transform: scale(1.2);
+}
+
+.icons a:active {
+    transform: scale(0.95);
+}
+.calculator {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin: 30px auto; /* زيادة التباعد بين الأقسام */
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.calculator h3 {
+    color: #0056b3;
+    font-size: 24px; /* تكبير حجم النص */
+    margin-bottom: 15px;
+}
+
+.calculator form {
+    display: flex;
+    flex-direction: column; /* جعل العناصر عمودية */
+    gap: 15px; /* زيادة التباعد بين الحقول */
+}
+
+.form-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* إضافة مساحة بين الحقول */
+}
+
+.form-control label {
+    flex: 2;
+    font-size: 18px; /* تكبير النص */
+}
+
+.form-control input, .form-control select {
+    flex: 3;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* تصميم خاص لصفحة قوانين كولوم */
+.coulomb-law {
+    background-color: #f3f9ff;
+    border-left: 5px solid #007bff;
+    padding: 10px;
+}
+

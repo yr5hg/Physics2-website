@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics 2 Guide - Chapter 28</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* تحسين لون العناوين */
+        article h3 {
+            color: #0056b3; /* لون أزرق */
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        body {
+            color: #333; /* لون النصوص الأساسي */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory" class="active"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 28: Direct Current Circuits</h2>
+        <article>
+            <h3>Direct Current (DC)</h3>
+            <p>Direct current (DC) is the flow of electric charge in a constant direction. It is produced by sources like batteries. Key points include:</p>
+            <ul>
+                <li>The current's direction is steady.</li>
+                <li>The battery serves as a source of electromotive force (emf).</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Electromotive Force (emf)</h3>
+            <p>The electromotive force (\( \mathcal{E} \)) is the maximum voltage a battery can provide:</p>
+            <p>
+                $$ V = \mathcal{E} - Ir $$
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( \mathcal{E} \): emf of the battery.</li>
+                <li>\( r \): Internal resistance of the battery.</li>
+                <li>\( I \): Current in the circuit.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Resistors in Series and Parallel</h3>
+            <p><strong>In Series:</strong> The equivalent resistance is the sum of the resistances:</p>
+            <p>
+                $$ R_{eq} = R_1 + R_2 + R_3 + \dots $$
+            </p>
+            <p><strong>In Parallel:</strong> The reciprocal of the equivalent resistance is the sum of the reciprocals:</p>
+            <p>
+                $$ \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \dots $$
+            </p>
+        </article>
+        <article>
+            <h3>Kirchhoff’s Rules</h3>
+            <p>Kirchhoff's rules are fundamental for analyzing complex circuits that cannot be simplified using series and parallel combinations alone. The two rules are:</p>
+
+            <h4>1. Junction Rule</h4>
+            <p>The Junction Rule states that the total current entering a junction must equal the total current leaving the junction. This rule is based on the principle of conservation of electric charge:</p>
+            <p>
+                $$ \sum I_{in} = \sum I_{out} $$
+            </p>
+            <p><strong>Example:</strong> If three currents \( I_1 \), \( I_2 \), and \( I_3 \) meet at a junction with \( I_1 \) entering and \( I_2, I_3 \) leaving, the equation becomes:</p>
+            <p>
+                $$ I_1 = I_2 + I_3 $$
+            </p>
+
+            <h4>2. Loop Rule</h4>
+            <p>The Loop Rule states that the sum of all potential differences (voltages) around any closed loop in a circuit must be zero. This rule is based on the principle of conservation of energy:</p>
+            <p>
+                $$ \sum V = 0 $$
+            </p>
+            <p>When applying the Loop Rule:</p>
+            <ul>
+                <li>If traversing a resistor in the same direction as the current, subtract \( IR \) (voltage drop).</li>
+                <li>If traversing a resistor against the current, add \( IR \) (voltage gain).</li>
+                <li>If traversing a battery from the negative to the positive terminal, add the emf (\( \mathcal{E} \)).</li>
+                <li>If traversing a battery from the positive to the negative terminal, subtract the emf (\( \mathcal{E} \)).</li>
+            </ul>
+
+            <p><strong>Example:</strong> In a simple loop containing a battery (\( \mathcal{E} \)) and two resistors (\( R_1, R_2 \)) in series, the equation becomes:</p>
+            <p>
+                $$ \mathcal{E} - I R_1 - I R_2 = 0 $$
+            </p>
+            <p>Simplify to find the current:</p>
+            <p>
+                $$ I = \frac{\mathcal{E}}{R_1 + R_2} $$
+            </p>
+
+            <h4>Combined Application</h4>
+            <p>In more complex circuits with multiple loops and junctions:</p>
+            <ul>
+                <li>Apply the Junction Rule to find relationships between currents at junctions.</li>
+                <li>Apply the Loop Rule to write equations for each independent loop.</li>
+                <li>Solve the resulting system of equations to find the unknown currents and voltages.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>RC Circuits</h3>
+            <p>An RC circuit consists of a resistor and a capacitor in series. The capacitor charges or discharges exponentially over time:</p>
+            <p><strong>Charging:</strong></p>
+            <p>
+                $$ q(t) = Q(1 - e^{-t/RC}) $$
+            </p>
+            <p><strong>Discharging:</strong></p>
+            <p>
+                $$ q(t) = Qe^{-t/RC} $$
+            </p>
+            <p>Where \( \tau = RC \) is the time constant.</p>
+        </article>
+        <a href="index.html#theory" class="btn fade-in">Back</a>
+    </section>
+</body>
+</html>

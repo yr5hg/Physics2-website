@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Physics 2 Guide - Potential Energy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('physics-background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000000;
+        }
+
+        .lab-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .controls input, .controls button {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 18px;
+        }
+
+        nav {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #FFD700;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #003d80;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Physics Lab - Potential Energy of Multiple Charges</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="theory-chapter25.html">Theory</a></li>
+            <li><a href="lab-chapter25.html" class="active">Physics Lab</a></li>
+            <li><a href="calculator-chapter25.html">Calculator</a></li>
+            <li><a href="quiz-chapter25.html">Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="lab-section">
+        <h2>Interactive Experiment: Potential Energy</h2>
+        <div class="controls">
+            <label for="chargeCount">Number of Charges (2-4):</label>
+            <input type="number" id="chargeCount" min="2" max="4" value="4" onchange="createChargeInputs(); updateSystem();">
+
+            <label for="distance">Distance between charges (meters):</label>
+            <input type="number" id="distance" step="0.1" value="1" onchange="updateSystem();">
+
+            <div id="chargeInputs"></div>
+            <button onclick="updateSystem()">Update System</button>
+        </div>
+        <canvas id="potentialCanvas" width="600" height="400"></canvas>
+        <p id="output">Total Potential Energy: 0 J</p>
+        <a href="index.html#lab" class="btn">Back to Main</a>
+    </section>
+
+    <script>
+        const canvas = document.getElementById("potentialCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const ke = 8.99e9; // Coulomb's constant
+        let charges = []; // Array to hold charges
+        const scale = 100; // Scale for converting meters to pixels
+
+        function updateSystem() {
+            const chargeCount = parseInt(document.getElementById("chargeCount").value);
+            const distance = parseFloat(document.getElementById("distance").value);
+
+            charges = [];
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+
+            if (chargeCount === 2) {
+                charges.push({ x: centerX - (distance * scale) / 2, y: centerY, value: parseFloat(document.getElementById('chargeValue0').value) * 1e-6 });
+                charges.push({ x: centerX + (distance * scale) / 2, y: centerY, value: parseFloat(document.getElementById('chargeValue1').value) * 1e-6 });
+            } else if (chargeCount === 3) {
+                const height = Math.sqrt(3) / 2 * distance * scale; // Height of equilateral triangle
+                charges.push({ x: centerX, y: centerY - height / 2, value: parseFloat(document.getElementById('chargeValue0').value) * 1e-6 });
+                charges.push({ x: centerX - (distance * scale) / 2, y: centerY + height / 2, value: parseFloat(document.getElementById('chargeValue1').value) * 1e-6 });
+                charges.push({ x: centerX + (distance * scale) / 2, y: centerY + height / 2, value: parseFloat(document.getElementById('chargeValue2').value) * 1e-6 });
+            } else if (chargeCount === 4) {
+                charges.push({ x: centerX - (distance * scale) / 2, y: centerY - (distance * scale) / 2, value: parseFloat(document.getElementById('chargeValue0').value) * 1e-6 });
+                charges.push({ x: centerX + (distance * scale) / 2, y: centerY - (distance * scale) / 2, value: parseFloat(document.getElementById('chargeValue1').value) * 1e-6 });
+                charges.push({ x: centerX - (distance * scale) / 2, y: centerY + (distance * scale) / 2, value: parseFloat(document.getElementById('chargeValue2').value) * 1e-6 });
+                charges.push({ x: centerX + (distance * scale) / 2, y: centerY + (distance * scale) / 2, value: parseFloat(document.getElementById('chargeValue3').value) * 1e-6 });
+            }
+
+            draw();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw lines between charges
+            for (let i = 0; i < charges.length; i++) {
+                for (let j = i + 1; j < charges.length; j++) {
+                    ctx.beginPath();
+
+                    if ((charges.length === 4 && ((i === 0 && j === 3) || (i === 1 && j === 2)))) {
+                        // Draw dashed lines for diagonal connections in squares
+                        ctx.setLineDash([5, 5]);
+                        ctx.strokeStyle = "gray";
+                    } else {
+                        // Draw solid lines for other connections
+                        ctx.setLineDash([]);
+                        ctx.strokeStyle = "black";
+
+                        // Calculate and display distances for lines
+                        const dx = (charges[j].x - charges[i].x) / scale;
+                        const dy = (charges[j].y - charges[i].y) / scale;
+                        const r = Math.sqrt(dx ** 2 + dy ** 2).toFixed(2);
+
+                        const midX = (charges[i].x + charges[j].x) / 2;
+                        const midY = (charges[i].y + charges[j].y) / 2 - 10; // Adjust to position above line
+
+                        ctx.fillStyle = "black";
+                        ctx.font = "14px Arial";
+                        ctx.fillText(`${r} m`, midX, midY);
+                    }
+
+                    ctx.moveTo(charges[i].x, charges[i].y);
+                    ctx.lineTo(charges[j].x, charges[j].y);
+                    ctx.stroke();
+                }
+            }
+
+            // Draw charges
+            charges.forEach((charge, index) => {
+                ctx.beginPath();
+                ctx.arc(charge.x, charge.y, 15, 0, 2 * Math.PI);
+                ctx.fillStyle = charge.value > 0 ? "red" : "blue";
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = "black";
+                ctx.font = "18px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(`q${index + 1}`, charge.x, charge.y - 20);
+            });
+
+            calculatePotentialEnergy();
+        }
+
+        function calculatePotentialEnergy() {
+            let totalPotentialEnergy = 0;
+
+            for (let i = 0; i < charges.length; i++) {
+                for (let j = i + 1; j < charges.length; j++) {
+                    const dx = (charges[j].x - charges[i].x) / scale;
+                    const dy = (charges[j].y - charges[i].y) / scale;
+                    const r = Math.sqrt(dx ** 2 + dy ** 2);
+                    totalPotentialEnergy += (ke * charges[i].value * charges[j].value) / r;
+                }
+            }
+
+            const formattedEnergy = formatScientific(totalPotentialEnergy);
+            document.getElementById("output").textContent = `Total Potential Energy: ${formattedEnergy} J`;
+        }
+
+        function formatScientific(value) {
+            if (value === 0 || isNaN(value) || !isFinite(value)) return "0";
+            const exponent = Math.floor(Math.log10(Math.abs(value)));
+            const mantissa = value / Math.pow(10, exponent);
+            return `${mantissa.toFixed(2)} × 10^${exponent}`;
+        }
+
+        function createChargeInputs() {
+            const chargeInputsDiv = document.getElementById("chargeInputs");
+            chargeInputsDiv.innerHTML = "";
+
+            const chargeCount = parseInt(document.getElementById("chargeCount").value);
+
+            for (let i = 0; i < chargeCount; i++) {
+                const input = document.createElement("div");
+                input.innerHTML = `
+                    <label for="chargeValue${i}">Charge q${i + 1} (µC):</label>
+                    <input type="number" id="chargeValue${i}" step="0.1" value="${i % 2 === 0 ? 1 : -1}">
+                `;
+                chargeInputsDiv.appendChild(input);
+            }
+        }
+
+        createChargeInputs();
+        draw();
+    </script>
+</body>
+</html>

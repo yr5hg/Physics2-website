@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Chapter 28</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('physics-background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .question {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .question h3 {
+            color: #0056b3;
+            font-size: 20px;
+        }
+
+        .question label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .main-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: rgba(0, 86, 179, 0.8);
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul li {
+            margin: 0 15px;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            display: block;
+            font-size: 18px;
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            background-color: #003366;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes" class="active"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 28 Quiz</h2>
+        <form id="quiz-form">
+            <input type="hidden" name="quiz-id" value="chapter28">
+            
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>1. Is a circuit breaker wired:</h3>
+                <label><input type="radio" name="q1" value="a"> (a) in series with the device it is protecting</label>
+                <label><input type="radio" name="q1" value="b"> (b) in parallel</label>
+                <label><input type="radio" name="q1" value="c"> (c) neither in series or in parallel</label>
+                <label><input type="radio" name="q1" value="d"> (d) is it impossible to tell?</label>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. A battery has some internal resistance.</h3>
+                <p>(i) Can the potential difference across the terminals of the battery be equal to its emf?</p>
+                <label><input type="radio" name="q2a" value="a"> (a) No</label>
+                <label><input type="radio" name="q2a" value="b"> (b) Yes, if the battery is absorbing energy by electrical transmission</label>
+                <label><input type="radio" name="q2a" value="c"> (c) Yes, if more than one wire is connected to each terminal</label>
+                <label><input type="radio" name="q2a" value="d"> (d) Yes, if the current in the battery is zero</label>
+                <label><input type="radio" name="q2a" value="e"> (e) Yes, with no special condition required</label>
+                <p>(ii) Can the terminal voltage exceed the emf?</p>
+                <label><input type="radio" name="q2b" value="a"> (a) No</label>
+                <label><input type="radio" name="q2b" value="b"> (b) Yes, if the battery is absorbing energy by electrical transmission</label>
+                <label><input type="radio" name="q2b" value="c"> (c) Yes, if more than one wire is connected to each terminal</label>
+                <label><input type="radio" name="q2b" value="d"> (d) Yes, if the current in the battery is zero</label>
+                <label><input type="radio" name="q2b" value="e"> (e) Yes, with no special condition required</label>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. When operating on a 120-V circuit, an electric heater receives \(1.30 \times 10^3\, \mathrm{W}\) of power, a toaster receives \(1.00 \times 10^3\, \mathrm{W}\), and an electric oven receives \(1.54 \times 10^3\, \mathrm{W}\). If all three appliances are connected in parallel on a 120-V circuit and turned on, what is the total current drawn from an external source?</h3>
+                <label><input type="radio" name="q3" value="a"> (a) 24.0 A</label>
+                <label><input type="radio" name="q3" value="b"> (b) 32.0 A</label>
+                <label><input type="radio" name="q3" value="c"> (c) 40.0 A</label>
+                <label><input type="radio" name="q3" value="d"> (d) 48.0 A</label>
+                <label><input type="radio" name="q3" value="e"> (e) None of those answers</label>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <h3>4. If the terminals of a battery with zero internal resistance are connected across two identical resistors in series, the total power delivered by the battery is 8.00 W. If the same battery is connected across the same resistors in parallel, what is the total power delivered by the battery?</h3>
+                <label><input type="radio" name="q4" value="a"> (a) 16.0 W</label>
+                <label><input type="radio" name="q4" value="b"> (b) 32.0 W</label>
+                <label><input type="radio" name="q4" value="c"> (c) 2.00 W</label>
+                <label><input type="radio" name="q4" value="d"> (d) 4.00 W</label>
+                <label><input type="radio" name="q4" value="e"> (e) None of those answers</label>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                <h3>5. Are the two headlights of a car wired:</h3>
+                <label><input type="radio" name="q5" value="a"> (a) in series with each other</label>
+                <label><input type="radio" name="q5" value="b"> (b) in parallel</label>
+                <label><input type="radio" name="q5" value="c"> (c) neither in series nor in parallel</label>
+                <label><input type="radio" name="q5" value="d"> (d) is it impossible to tell?</label>
+            </div>
+
+            <button type="submit" class="btn">Submit</button>
+            <a href="index.html#quizzes" class="btn">Back</a>
+        </form>
+        <div id="quiz-result" style="display: none;"></div>
+    </section>
+    <script src="quiz28.js"></script>
+</body>
+</html>

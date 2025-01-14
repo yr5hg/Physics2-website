@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics 2 Guide - Chapter 26</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* تحسين لون العناوين */
+        article h3 {
+            color: #0056b3; /* لون أزرق كما في الصفحات الأخرى */
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        body {
+            color: #333; /* لون النصوص الأساسي */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory" class="active"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 26: Capacitance and Dielectrics</h2>
+        <article>
+            <h3>Definition of Capacitance</h3>
+            <p>Capacitance (\( C \)) is the ability of a system to store electric charge. It is defined as:</p>
+            <p>
+                $$ C = \frac{Q}{\Delta V} $$
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( Q \): Charge on either conductor.</li>
+                <li>\( \Delta V \): Potential difference between the conductors.</li>
+            </ul>
+            <p>Key points:</p>
+            <ul>
+                <li>The SI unit of capacitance is the farad (F).</li>
+                <li>Common subunits: microfarad (\( \mu F \)) and picofarad (\( pF \)).</li>
+                <li>Capacitance depends on the physical properties of the capacitor, not the charge or voltage.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Calculating Capacitance</h3>
+            <p>For specific configurations:</p>
+            <ul>
+                <li><strong>Parallel Plate Capacitor:</strong></li>
+            </ul>
+            <p>
+                $$ C = \frac{\epsilon_0 A}{d} $$
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( \epsilon_0 \): Permittivity of free space.</li>
+                <li>\( A \): Plate area.</li>
+                <li>\( d \): Distance between plates.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Combinations of Capacitors</h3>
+            <p>Capacitors can be combined in series or parallel:</p>
+            <ul>
+                <li><strong>In Parallel:</strong> The equivalent capacitance is the sum:</li>
+                <p>
+                    $$ C_{eq} = C_1 + C_2 + C_3 + \dots $$
+                </p>
+                <li><strong>In Series:</strong> The reciprocal of the equivalent capacitance is the sum of reciprocals:</li>
+                <p>
+                    $$ \frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + \frac{1}{C_3} + \dots $$
+                </p>
+            </ul>
+        </article>
+        <article>
+            <h3>Energy Stored in a Capacitor</h3>
+            <p>The energy (\( U \)) stored in a charged capacitor is given by:</p>
+            <p>
+                $$ U = \frac{1}{2} C (\Delta V)^2 $$
+            </p>
+            <p>The energy density in the electric field is:</p>
+            <p>
+                $$ u_E = \frac{1}{2} \epsilon_0 E^2 $$
+            </p>
+        </article>
+        <article>
+            <h3>Capacitors with Dielectrics</h3>
+            <p>Inserting a dielectric between capacitor plates increases capacitance by a factor of the dielectric constant (\( \kappa \)):</p>
+            <p>
+                $$ C = \kappa C_0 $$
+            </p>
+            <p>Key points:</p>
+            <ul>
+                <li>Dielectrics increase capacitance and maximum voltage before breakdown.</li>
+                <li>Examples include rubber, glass, and waxed paper.</li>
+            </ul>
+        </article>
+        <a href="index.html#theory" class="btn fade-in">Back</a>
+    </section>
+</body>
+</html>

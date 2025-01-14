@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Chapter 25</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('physics-background2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .question {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .question h3 {
+            color: #0056b3;
+            font-size: 20px;
+        }
+
+        .question label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .main-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: rgba(0, 86, 179, 0.8);
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul li {
+            margin: 0 15px;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            display: block;
+            font-size: 18px;
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            background-color: #003366;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes" class="active"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 25 Quiz</h2>
+        <form id="quiz-form">
+            <input type="hidden" name="quiz-id" value="chapter25">
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>1. In a certain region of space, the electric field is zero.</h3>
+                <p>From this fact, what can you conclude about the electric potential in this region?</p>
+                <label><input type="radio" name="q1" value="a"> (a) It is zero.</label>
+                <label><input type="radio" name="q1" value="b"> (b) It does not vary with position.</label>
+                <label><input type="radio" name="q1" value="c"> (c) It is positive.</label>
+                <label><input type="radio" name="q1" value="d"> (d) It is negative.</label>
+                <label><input type="radio" name="q1" value="e"> (e) None of those answers is necessarily true.</label>
+            </div>
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. The electric potential at x = 3.00 m is 120 V, and the electric potential at x = 5.00 m is 190 V.</h3>
+                <p>What is the x component of the electric field in this region, assuming the field is uniform?</p>
+                <label><input type="radio" name="q2" value="a"> (a) 140 N/C</label>
+                <label><input type="radio" name="q2" value="b"> (b) -140 N/C</label>
+                <label><input type="radio" name="q2" value="c"> (c) 35.0 N/C</label>
+                <label><input type="radio" name="q2" value="d"> (d) -35.0 N/C</label>
+                <label><input type="radio" name="q2" value="e"> (e) 75.0 N/C</label>
+            </div>
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. In a certain region of space, a uniform electric field is in the x direction.</h3>
+                <p>(i) Does the electric potential energy of the charge–field system:</p>
+                <label><input type="radio" name="q3a" value="a"> (a) Increase</label>
+                <label><input type="radio" name="q3a" value="b"> (b) Remain constant</label>
+                <label><input type="radio" name="q3a" value="c"> (c) Decrease</label>
+                <label><input type="radio" name="q3a" value="d"> (d) Change unpredictably</label>
+                <p>(ii) Has the particle moved to a position where the electric potential is:</p>
+                <label><input type="radio" name="q3b" value="a"> (a) Higher than before</label>
+                <label><input type="radio" name="q3b" value="b"> (b) Unchanged</label>
+                <label><input type="radio" name="q3b" value="c"> (c) Lower than before</label>
+                <label><input type="radio" name="q3b" value="d"> (d) Unpredictable</label>
+            </div>
+            <!-- Question 4 -->
+<div class="question">
+    <h3>4. Four particles are positioned on the rim of a circle. The charges on the particles are +0.500μC, +1.50μC, −1.00μC, and −0.500μC. If the electric potential at the center of the circle due to the +0.500μC charge alone is 4.50×10<sup>4</sup> V, what is the total electric potential at the center due to the four charges?</h3>
+    <label><input type="radio" name="q4" value="a"> (a) 18.0×10<sup>4</sup> V</label>
+    <label><input type="radio" name="q4" value="b"> (b) 4.50×10<sup>4</sup> V</label>
+    <label><input type="radio" name="q4" value="c"> (c) 0 V</label>
+    <label><input type="radio" name="q4" value="d"> (d) −4.50×10<sup>4</sup> V</label>
+    <label><input type="radio" name="q4" value="e"> (e) 9.00×10<sup>4</sup> V</label>
+</div>
+
+<!-- Question 5 -->
+<div class="question">
+    <h3>5. A proton is released at the origin and travels along the x-axis under the influence of a uniform electric field in the positive x direction with magnitude 850 N/C. What is the change in the electric potential energy of the proton-field system when the proton travels to x=2.50cm?</h3>
+    <label><input type="radio" name="q5" value="a"> (a) 3.40×10<sup>-21</sup> J</label>
+    <label><input type="radio" name="q5" value="b"> (b) -3.40×10<sup>-21</sup> J</label>
+    <label><input type="radio" name="q5" value="c"> (c) 2.50×10<sup>-21</sup> J</label>
+    <label><input type="radio" name="q5" value="d"> (d) -2.50×10<sup>-21</sup> J</label>
+    <label><input type="radio" name="q5" value="e"> (e) -1.60×10<sup>-19</sup> J</label>
+</div>
+
+<!-- Question 6 -->
+<div class="question">
+    <h3>6. A particle with charge −40.0 nC is on the x-axis at the point with coordinate x = 0. A second particle, with charge −20.0 nC, is on the x-axis at x = 0.500 m.</h3>
+    <p>(i) Is the point at a finite distance where the electric field is zero:</p>
+    <label><input type="radio" name="q6a" value="a"> (a) To the left of x = 0.</label>
+    <label><input type="radio" name="q6a" value="b"> (b) Between x = 0 and x = 0.500 m.</label>
+    <label><input type="radio" name="q6a" value="c"> (c) To the right of x = 0.500 m.</label>
+    <p>(ii) Is the electric potential zero at this point?</p>
+    <label><input type="radio" name="q6b" value="a"> (a) No; it is positive.</label>
+    <label><input type="radio" name="q6b" value="b"> (b) Yes.</label>
+    <label><input type="radio" name="q6b" value="c"> (c) No; it is negative.</label>
+    <p>(iii) Is there a point at a finite distance where the electric potential is zero?</p>
+    <label><input type="radio" name="q6c" value="a"> (a) Yes; it is to the left of x = 0.</label>
+    <label><input type="radio" name="q6c" value="b"> (b) Yes; it is between x = 0 and x = 0.500 m.</label>
+    <label><input type="radio" name="q6c" value="c"> (c) Yes; it is to the right of x = 0.500 m.</label>
+    <label><input type="radio" name="q6c" value="d"> (d) No.</label>
+</div>
+
+
+<!-- Question 7 -->
+<div class="question">
+    <h3>7. A filament running along the x-axis from the origin to x=80.0cm carries electric charge with uniform density. At the point P with coordinates x=80.0cm, y=80.0cm, this filament creates electric potential 100V. Now we add another filament along the y-axis, running from the origin to y=80.0cm, carrying the same amount of charge with the same uniform density. At the same point P, is the electric potential created by the pair of filaments:</h3>
+    <label><input type="radio" name="q7" value="a"> (a) Greater than 200V</label>
+    <label><input type="radio" name="q7" value="b"> (b) 200V</label>
+    <label><input type="radio" name="q7" value="c"> (c) Between 0 and 200V</label>
+    <label><input type="radio" name="q7" value="d"> (d) 0V</label>
+</div>
+
+
+<!-- Question 8 -->
+<div class="question">
+    <h3>8. A helium nucleus (charge +2e, mass 6.64 × 10<sup>-27</sup> kg) traveling at 2.60 Mm/s enters an electric field. It travels from point A, at a potential of 1.50×10<sup>4</sup> V, to point B, at 4.00×10<sup>3</sup> V. What is its speed at point B?</h3>
+    <label><input type="radio" name="q8" value="a"> (a) 2.52 Mm/s</label>
+    <label><input type="radio" name="q8" value="b"> (b) 2.39 Mm/s</label>
+    <label><input type="radio" name="q8" value="c"> (c) 2.13×10<sup>3</sup> m/s</label>
+    <label><input type="radio" name="q8" value="d"> (d) 2.52×10<sup>3</sup> m/s</label>
+</div>
+
+
+            <button type="submit" class="btn">Submit</button>
+            <a href="index.html#quizzes" class="btn">Back</a>
+        </form>
+        <div id="quiz-result" style="display: none;"></div>
+    </section>
+    <script src="quiz25.js"></script>
+</body>
+</html>

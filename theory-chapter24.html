@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics 2 Guide - Chapter 24</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* تحسين لون العناوين */
+        article h3 {
+            color: #0056b3; /* لون أزرق كما في تشابتر 23 */
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        body {
+            color: #333; /* لون النصوص الأساسي */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory" class="active"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    <section class="description">
+        <h2>Chapter 24: Gauss's Law</h2>
+        <article>
+            <h3>Electric Flux</h3>
+            <p>Electric flux (\( \Phi_E \)) measures the number of electric field lines passing through a surface. It is given by:</p>
+            <p>
+                $$ \Phi_E = EA \cos\theta $$
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( E \): Electric field strength.</li>
+                <li>\( A \): Surface area.</li>
+                <li>\( \theta \): Angle between the field and the surface normal.</li>
+            </ul>
+            <p><strong>Key points:</strong></p>
+            <ul>
+                <li>Maximum flux occurs when the surface is perpendicular to the field (\( \theta = 0^\circ \)).</li>
+                <li>Flux is zero when the surface is parallel to the field (\( \theta = 90^\circ \)).</li>
+                <li>Units of flux: \( N \cdot m^2 / C \).</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Gauss's Law</h3>
+            <p>Gauss's Law states that the net electric flux through a closed surface is proportional to the total charge enclosed within it:</p>
+            <p>
+                $$ \Phi_E = \frac{q_{in}}{\epsilon_0} $$
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( q_{in} \): Net charge enclosed within the surface.</li>
+                <li>\( \epsilon_0 \): Permittivity of free space (\( 8.85 \times 10^{-12} \, \text{C}^2/\text{N} \cdot \text{m}^2 \)).</li>
+            </ul>
+            <p><strong>Applications:</strong></p>
+            <ul>
+                <li>If no charge is enclosed, the net flux is zero.</li>
+                <li>Gaussian surfaces are chosen to simplify electric field calculations.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Applications of Gauss's Law</h3>
+            <p>Gauss's Law is applied to symmetric charge distributions to calculate electric fields:</p>
+            <ul>
+                <li><strong>Spherical charge distributions:</strong> Used for fields of point charges or spheres.</li>
+                <li><strong>Line of charge:</strong> Field around a charged wire or rod.</li>
+                <li><strong>Plane of charge:</strong> Field created by an infinite charged plane.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Conductors in Electrostatic Equilibrium</h3>
+            <p>When a conductor is in electrostatic equilibrium:</p>
+            <ul>
+                <li>The electric field inside the conductor is zero.</li>
+                <li>The charge resides on the surface of the conductor.</li>
+                <li>The electric field outside the surface is perpendicular and proportional to surface charge density:</li>
+                <p>
+                    $$ E = \frac{\sigma}{\epsilon_0} $$
+                </p>
+                <li>On irregular surfaces, the charge density is higher where the radius of curvature is smaller.</li>
+            </ul>
+        </article>
+        <a href="index.html#theory" class="btn fade-in">Back</a>
+    </section>
+</body>
+</html>

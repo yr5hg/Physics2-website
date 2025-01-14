@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - Chapter: Capacitance and Stored Energy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+</script>
+    <style>
+        body {
+            color: #000;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .calculate-btn, .clear-btn {
+            flex: 1;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .clear-btn {
+            background-color: #dc3545;
+        }
+        .calculate-btn:hover {
+            background-color: #0056b3;
+        }
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+        .calculator {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #138496;
+        }
+        .unit-select {
+            margin-left: 10px;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .result-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .result-box.show {
+            display: block;
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator" class="active"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    
+    <section class="description">
+        <h2>Chapter 26 Calculator</h2>
+
+        <!-- Basic Capacitance -->
+        <div class="calculator">
+            <h3>1. Basic Capacitance</h3>
+            <p>Formula: \( C = \frac{Q}{\Delta V} \)</p>
+            <form id="basic-capacitance-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="cap-q">Charge (Q):</label>
+                    <input type="number" id="cap-q" step="any">
+                    <select id="cap-q-unit" class="unit-select">
+                        <option value="1">C</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="cap-dv">Potential Difference (\( \Delta V \)):</label>
+                    <input type="number" id="cap-dv" step="any">
+                    <select id="cap-dv-unit" class="unit-select">
+                        <option value="1">V</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="basic-capacitance-result" class="result-box"></div>
+        </div>
+
+        <!-- Capacitance of an Isolated Spherical Conductor -->
+        <div class="calculator">
+            <h3>2. Capacitance of an Isolated Spherical Conductor</h3>
+            <p>Formula: \( C = \frac{a}{k_e} \)</p>
+            <form id="spherical-conductor-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="spherical-a">Radius (a):</label>
+                    <input type="number" id="spherical-a" step="any">
+                    <select id="spherical-a-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="spherical-conductor-result" class="result-box"></div>
+        </div>
+
+        <!-- Capacitance of a Parallel Plate Capacitor -->
+        <div class="calculator">
+            <h3>3. Capacitance of a Parallel Plate Capacitor</h3>
+            <p>Formula: \( C = \frac{\epsilon_0 A}{d} \)</p>
+            <form id="parallel-plate-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="plate-a">Area (A):</label>
+                    <input type="number" id="plate-a" step="any">
+                    <select id="plate-a-unit" class="unit-select">
+                        <option value="1">m&sup2;</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="plate-d">Distance (d):</label>
+                    <input type="number" id="plate-d" step="any">
+                    <select id="plate-d-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="parallel-plate-result" class="result-box"></div>
+        </div>
+
+        <!-- Capacitance of a Cylindrical Capacitor -->
+        <div class="calculator">
+            <h3>4. Capacitance of a Cylindrical Capacitor</h3>
+            <p>Formula: \( C = \frac{\ell}{2 k_e \ln \left( \frac{b}{a} \right)} \)</p>
+            <form id="cylindrical-capacitor-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="cyl-l">Length (\( \ell \)):</label>
+                    <input type="number" id="cyl-l" step="any">
+                    <select id="cyl-l-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="cyl-a">Inner Radius (a):</label>
+                    <input type="number" id="cyl-a" step="any">
+                    <select id="cyl-a-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="cyl-b">Outer Radius (b):</label>
+                    <input type="number" id="cyl-b" step="any">
+                    <select id="cyl-b-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="cylindrical-capacitor-result" class="result-box"></div>
+        </div>
+
+        <!-- Capacitance of a Spherical Capacitor -->
+        <div class="calculator">
+            <h3>5. Capacitance of a Spherical Capacitor</h3>
+            <p>Formula: \( C = \frac{a b}{k_e (b - a)} \)</p>
+            <form id="spherical-capacitor-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="sph-a">Inner Radius (a):</label>
+                    <input type="number" id="sph-a" step="any">
+                    <select id="sph-a-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="sph-b">Outer Radius (b):</label>
+                    <input type="number" id="sph-b" step="any">
+                    <select id="sph-b-unit" class="unit-select">
+                        <option value="1">m</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="spherical-capacitor-result" class="result-box"></div>
+        </div>
+
+        <!-- Equivalent Capacitance -->
+        <div class="calculator">
+            <h3>6. Equivalent Capacitance</h3>
+            <p>Parallel: \( C_{eq} = C_1 + C_2 + C_3 + \ldots \)</p>
+            <p>Series: \( \frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + \frac{1}{C_3} + \ldots \)</p>
+            <form id="equivalent-capacitance-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="eq-caps">Capacitances (comma-separated):</label>
+                    <input type="text" id="eq-caps">
+                </div>
+                <div class="form-control">
+                    <label for="eq-type">Connection Type:</label>
+                    <select id="eq-type" class="unit-select">
+                        <option value="parallel">Parallel</option>
+                        <option value="series">Series</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="equivalent-capacitance-result" class="result-box"></div>
+        </div>
+
+               <!-- Stored Energy in a Capacitor -->
+               <div class="calculator">
+                <h3>7. Stored Energy in a Capacitor</h3>
+                <p>Formulas: \( U = \frac{Q^2}{2C} = \frac{1}{2} Q \Delta V = \frac{1}{2} C (\Delta V)^2 \)</p>
+                <p>Enter any two values to calculate the stored energy:</p>
+                <form id="stored-energy-form" onsubmit="return false;">
+                    <div class="form-control">
+                        <label for="energy-q">Charge (Q):</label>
+                        <input type="number" id="energy-q" step="any">
+                        <select id="energy-q-unit" class="unit-select">
+                            <option value="1">C</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="energy-v">Potential Difference (\( \Delta V \)):</label>
+                        <input type="number" id="energy-v" step="any">
+                        <select id="energy-v-unit" class="unit-select">
+                            <option value="1">V</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="energy-c">Capacitance (C):</label>
+                        <input type="number" id="energy-c" step="any">
+                        <select id="energy-c-unit" class="unit-select">
+                            <option value="1">F</option>
+                        </select>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="calculate-btn">Calculate</button>
+                        <button type="button" class="clear-btn">Clear</button>
+                    </div>
+                </form>
+                <div id="stored-energy-result" class="result-box"></div>
+            </div>
+    
+            </form>
+            <div id="stored-energy-result" class="result-box"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">Back</a>
+    </section>
+    <script>
+        // Constants
+const KE = 8.99e9; // Coulomb constant
+const EPSILON_0 = 8.854e-12; // Permittivity of free space
+
+// Helper function to get input value with unit conversion
+function getValueWithUnit(inputId, unitId) {
+    const value = parseFloat(document.getElementById(inputId).value);
+    const unit = parseFloat(document.getElementById(unitId).value);
+    return value * unit;
+}
+
+// Helper function to format result in scientific notation
+function formatScientific(value) {
+    if (value === 0) return "0.00";
+    if (value >= 1 && value < 10) {
+        return `${value.toFixed(2)}`;
+    } else {
+        const exponent = Math.floor(Math.log10(Math.abs(value)));
+        const mantissa = value / Math.pow(10, exponent);
+        return `${mantissa.toFixed(2)} &times; 10<sup>${exponent}</sup>`;
+    }
+}
+
+// Function to display result
+function displayResult(elementId, result) {
+    const resultBox = document.getElementById(elementId);
+    resultBox.innerHTML = result;
+    resultBox.classList.add('show');
+}
+
+// Function to clear result
+function clearResult(elementId) {
+    document.getElementById(elementId).innerHTML = '';
+}
+
+// 1. Basic Capacitance: C = Q / ΔV
+function calculateBasicCapacitance() {
+    const Q = getValueWithUnit('cap-q', 'cap-q-unit');
+    const deltaV = getValueWithUnit('cap-dv', 'cap-dv-unit');
+
+    if (isNaN(Q) || isNaN(deltaV) || deltaV === 0) {
+        displayResult('basic-capacitance-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const C = Q / deltaV;
+    displayResult('basic-capacitance-result', formatScientific(C) + ' F');
+}
+
+function clearBasicCapacitance() {
+    document.getElementById('cap-q').value = '';
+    document.getElementById('cap-dv').value = '';
+    clearResult('basic-capacitance-result');
+}
+
+// 2. Capacitance of an Isolated Spherical Conductor: C = a / ke
+function calculateSphericalConductorCapacitance() {
+    const a = getValueWithUnit('spherical-a', 'spherical-a-unit');
+
+    if (isNaN(a) || a === 0) {
+        displayResult('spherical-conductor-result', 'Error: Please enter a valid radius.');
+        return;
+    }
+
+    const C = a / KE;
+    displayResult('spherical-conductor-result', formatScientific(C) + ' F');
+}
+
+function clearSphericalConductorCapacitance() {
+    document.getElementById('spherical-a').value = '';
+    clearResult('spherical-conductor-result');
+}
+
+// 3. Capacitance of a Parallel Plate Capacitor: C = ε0 * A / d
+function calculateParallelPlateCapacitance() {
+    const A = getValueWithUnit('plate-a', 'plate-a-unit');
+    const d = getValueWithUnit('plate-d', 'plate-d-unit');
+
+    if (isNaN(A) || isNaN(d) || d === 0) {
+        displayResult('parallel-plate-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const C = (EPSILON_0 * A) / d;
+    displayResult('parallel-plate-result', formatScientific(C) + ' F');
+}
+
+function clearParallelPlateCapacitance() {
+    document.getElementById('plate-a').value = '';
+    document.getElementById('plate-d').value = '';
+    clearResult('parallel-plate-result');
+}
+
+// 4. Capacitance of a Cylindrical Capacitor: C = ℓ / (2 * ke * ln(b / a))
+function calculateCylindricalCapacitance() {
+    const l = getValueWithUnit('cyl-l', 'cyl-l-unit');
+    const a = getValueWithUnit('cyl-a', 'cyl-a-unit');
+    const b = getValueWithUnit('cyl-b', 'cyl-b-unit');
+
+    if (isNaN(l) || isNaN(a) || isNaN(b) || a === 0 || b === 0 || a >= b) {
+        displayResult('cylindrical-capacitor-result', 'Error: Please enter valid values (a < b).');
+        return;
+    }
+
+    const C = l / (2 * KE * Math.log(b / a));
+    displayResult('cylindrical-capacitor-result', formatScientific(C) + ' F');
+}
+
+function clearCylindricalCapacitance() {
+    document.getElementById('cyl-l').value = '';
+    document.getElementById('cyl-a').value = '';
+    document.getElementById('cyl-b').value = '';
+    clearResult('cylindrical-capacitor-result');
+}
+
+// 5. Capacitance of a Spherical Capacitor: C = (a * b) / (ke * (b - a))
+function calculateSphericalCapacitorCapacitance() {
+    const a = getValueWithUnit('sph-a', 'sph-a-unit');
+    const b = getValueWithUnit('sph-b', 'sph-b-unit');
+
+    if (isNaN(a) || isNaN(b) || a === 0 || b === 0 || a >= b) {
+        displayResult('spherical-capacitor-result', 'Error: Please enter valid values (a < b).');
+        return;
+    }
+
+    const C = (a * b) / (KE * (b - a));
+    displayResult('spherical-capacitor-result', formatScientific(C) + ' F');
+}
+
+function clearSphericalCapacitorCapacitance() {
+    document.getElementById('sph-a').value = '';
+    document.getElementById('sph-b').value = '';
+    clearResult('spherical-capacitor-result');
+}
+
+// 6. Equivalent Capacitance (Parallel and Series)
+function calculateEquivalentCapacitance() {
+    const caps = document.getElementById('eq-caps').value.split(',').map(Number);
+    const type = document.getElementById('eq-type').value;
+
+    if (caps.some(isNaN) || caps.length === 0) {
+        displayResult('equivalent-capacitance-result', 'Error: Please enter valid capacitances.');
+        return;
+    }
+
+    let Ceq;
+    if (type === 'parallel') {
+        Ceq = caps.reduce((sum, c) => sum + c, 0);
+    } else if (type === 'series') {
+        Ceq = 1 / caps.reduce((sum, c) => sum + (1 / c), 0);
+    }
+
+    displayResult('equivalent-capacitance-result', formatScientific(Ceq) + ' F');
+}
+
+function clearEquivalentCapacitance() {
+    document.getElementById('eq-caps').value = '';
+    clearResult('equivalent-capacitance-result');
+}
+
+// 7. Stored Energy in a Capacitor: U = Q^2 / (2C) = 1/2 * Q * ΔV = 1/2 * C * (ΔV)^2
+function calculateStoredEnergy() {
+    const Q = parseFloat(document.getElementById('energy-q').value);
+    const V = parseFloat(document.getElementById('energy-v').value);
+    const C = parseFloat(document.getElementById('energy-c').value);
+
+    const hasQ = !isNaN(Q);
+    const hasV = !isNaN(V);
+    const hasC = !isNaN(C);
+
+    if ((hasQ + hasV + hasC) !== 2) {
+        displayResult('stored-energy-result', 'Error: Please enter exactly two values.');
+        return;
+    }
+
+    let U;
+    if (hasQ && hasC) {
+        U = (Q ** 2) / (2 * C);
+    } else if (hasQ && hasV) {
+        U = 0.5 * Q * V;
+    } else if (hasV && hasC) {
+        U = 0.5 * C * (V ** 2);
+    }
+
+    displayResult('stored-energy-result', formatScientific(U) + ' J');
+}
+
+function clearStoredEnergy() {
+    document.getElementById('energy-q').value = '';
+    document.getElementById('energy-v').value = '';
+    document.getElementById('energy-c').value = '';
+    clearResult('stored-energy-result');
+}
+
+// Attach event listeners on page load
+function attachEventListeners() {
+    document.querySelector('#basic-capacitance-form .calculate-btn').addEventListener('click', calculateBasicCapacitance);
+    document.querySelector('#basic-capacitance-form .clear-btn').addEventListener('click', clearBasicCapacitance);
+
+    document.querySelector('#spherical-conductor-form .calculate-btn').addEventListener('click', calculateSphericalConductorCapacitance);
+    document.querySelector('#spherical-conductor-form .clear-btn').addEventListener('click', clearSphericalConductorCapacitance);
+
+    document.querySelector('#parallel-plate-form .calculate-btn').addEventListener('click', calculateParallelPlateCapacitance);
+    document.querySelector('#parallel-plate-form .clear-btn').addEventListener('click', clearParallelPlateCapacitance);
+
+    document.querySelector('#cylindrical-capacitor-form .calculate-btn').addEventListener('click', calculateCylindricalCapacitance);
+    document.querySelector('#cylindrical-capacitor-form .clear-btn').addEventListener('click', clearCylindricalCapacitance);
+
+    document.querySelector('#spherical-capacitor-form .calculate-btn').addEventListener('click', calculateSphericalCapacitorCapacitance);
+    document.querySelector('#spherical-capacitor-form .clear-btn').addEventListener('click', clearSphericalCapacitorCapacitance);
+
+    document.querySelector('#equivalent-capacitance-form .calculate-btn').addEventListener('click', calculateEquivalentCapacitance);
+    document.querySelector('#equivalent-capacitance-form .clear-btn').addEventListener('click', clearEquivalentCapacitance);
+
+    document.querySelector('#stored-energy-form .calculate-btn').addEventListener('click', calculateStoredEnergy);
+    document.querySelector('#stored-energy-form .clear-btn').addEventListener('click', clearStoredEnergy);
+}
+
+// Attach listeners when page loads
+window.onload = attachEventListeners;
+    </script>
+</body>
+</html>

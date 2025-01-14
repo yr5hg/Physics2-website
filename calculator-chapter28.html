@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - Chapter: Internal Resistance and Terminal Voltage</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+    </script>
+    <style>
+        body {
+            color: #000;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .calculate-btn, .clear-btn {
+            flex: 1;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .clear-btn {
+            background-color: #dc3545;
+        }
+        .calculate-btn:hover {
+            background-color: #0056b3;
+        }
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+        .calculator {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #138496;
+        }
+        .unit-select {
+            margin-left: 10px;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .result-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    display: none; /* يبدأ مخفيًا */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator" class="active"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    
+    <section class="description">
+        <h2>Chapter: Internal Resistance and Terminal Voltage</h2>
+
+        <!-- Terminal Voltage of a Real Battery -->
+        <div class="calculator">
+            <h3>1. Terminal Voltage of a Real Battery</h3>
+            <p>Formula: \( \Delta V = \epsilon - I r \)</p>
+            <form id="terminal-voltage-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="emf">EMF (\( \epsilon \)):</label>
+                    <input type="number" id="emf" step="any">
+                    <select id="emf-unit" class="unit-select">
+                        <option value="1">V</option>
+                        <option value="1e-3">mV</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="current">Current (I):</label>
+                    <input type="number" id="current" step="any">
+                    <select id="current-unit" class="unit-select">
+                        <option value="1">A</option>
+                        <option value="1e-3">mA</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="internal-resistance">Internal Resistance (r):</label>
+                    <input type="number" id="internal-resistance" step="any">
+                    <select id="internal-resistance-unit" class="unit-select">
+                        <option value="1">&Omega;</option>
+                        <option value="1e3">k&Omega;</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="terminal-voltage-result" class="result-box"></div>
+        </div>
+
+        <!-- Current in a Circuit with Internal Resistance -->
+        <div class="calculator">
+            <h3>2. Current in a Circuit with Internal Resistance</h3>
+            <p>Formula: \( I = \frac{\epsilon}{R + r} \)</p>
+            <form id="current-circuit-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="circuit-emf">EMF (\( \epsilon \)):</label>
+                    <input type="number" id="circuit-emf" step="any">
+                    <select id="circuit-emf-unit" class="unit-select">
+                        <option value="1">V</option>
+                        <option value="1e-3">mV</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="external-resistance">External Resistance (R):</label>
+                    <input type="number" id="external-resistance" step="any">
+                    <select id="external-resistance-unit" class="unit-select">
+                        <option value="1">&Omega;</option>
+                        <option value="1e3">k&Omega;</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="circuit-internal-resistance">Internal Resistance (r):</label>
+                    <input type="number" id="circuit-internal-resistance" step="any">
+                    <select id="circuit-internal-resistance-unit" class="unit-select">
+                        <option value="1">&Omega;</option>
+                        <option value="1e3">k&Omega;</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="current-circuit-result" class="result-box"></div>
+        </div>
+
+        <!-- Equivalent Resistance -->
+        <div class="calculator">
+            <h3>3. Equivalent Resistance</h3>
+            <p>Formulas for Resistors in Series and Parallel:</p>
+            <ul>
+                <li>Series: \( R_{eq} = R_1 + R_2 + R_3 + \ldots \)</li>
+                <li>Parallel: \( \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \ldots \)</li>
+            </ul>
+            <form id="equivalent-resistance-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="resistor-values">Resistances (Comma Separated):</label>
+                    <input type="text" id="resistor-values">
+                    <select id="resistor-unit" class="unit-select">
+                        <option value="1">&Omega;</option>
+                        <option value="1e3">k&Omega;</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="connection-type">Connection Type:</label>
+                    <select id="connection-type">
+                        <option value="series">Series</option>
+                        <option value="parallel">Parallel</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="equivalent-resistance-result" class="result-box"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">Back</a>
+    </section>
+    <script>
+  // Script for Chapter: Internal Resistance and Equivalent Resistance Calculations
+
+// Helper function to get numeric input with unit conversion
+function getValueWithUnit(inputId, unitId) {
+    const value = parseFloat(document.getElementById(inputId).value);
+    const unit = parseFloat(document.getElementById(unitId).value);
+    return value * unit;
+}
+
+// Helper function to format result in scientific notation
+function formatScientific(value) {
+    if (value === 0) return "0.00";
+    if (value >= 1 && value < 10) {
+        return `result= ${value.toFixed(2)}`;
+    } else {
+        const exponent = Math.floor(Math.log10(Math.abs(value)));
+        const mantissa = value / Math.pow(10, exponent);
+        return `result= ${mantissa.toFixed(2)} × 10<sup>${exponent}</sup>`;
+    }
+}
+
+function displayResult(elementId, result) {
+    const resultBox = document.getElementById(elementId);
+    resultBox.innerHTML = result;
+    resultBox.style.display = 'block';
+}
+
+// 1. Terminal Voltage of a Real Battery
+function calculateTerminalVoltage() {
+    const emf = getValueWithUnit('emf', 'emf-unit');
+    const current = getValueWithUnit('current', 'current-unit');
+    const resistance = getValueWithUnit('internal-resistance', 'internal-resistance-unit');
+
+    if (isNaN(emf) || isNaN(current) || isNaN(resistance)) {
+        displayResult('terminal-voltage-result', 'Error: Please enter valid numbers.');
+        return;
+    }
+
+    const voltage = emf - (current * resistance);
+    displayResult('terminal-voltage-result', formatScientific(voltage) + ' V');
+}
+
+function clearTerminalVoltage() {
+    document.getElementById('emf').value = '';
+    document.getElementById('current').value = '';
+    document.getElementById('internal-resistance').value = '';
+    document.getElementById('terminal-voltage-result').style.display = 'none';
+}
+
+// 2. Current in a Circuit with Internal Resistance
+function calculateCurrent() {
+    const emf = getValueWithUnit('circuit-emf', 'circuit-emf-unit');
+    const externalResistance = getValueWithUnit('external-resistance', 'external-resistance-unit');
+    const internalResistance = getValueWithUnit('circuit-internal-resistance', 'circuit-internal-resistance-unit');
+
+    if (isNaN(emf) || isNaN(externalResistance) || isNaN(internalResistance)) {
+        displayResult('current-circuit-result', 'Error: Please enter valid numbers.');
+        return;
+    }
+
+    const totalResistance = externalResistance + internalResistance;
+    if (totalResistance === 0) {
+        displayResult('current-circuit-result', 'Error: Total resistance cannot be zero.');
+        return;
+    }
+
+    const current = emf / totalResistance;
+    displayResult('current-circuit-result', formatScientific(current) + ' A');
+}
+
+function clearCurrent() {
+    document.getElementById('circuit-emf').value = '';
+    document.getElementById('external-resistance').value = '';
+    document.getElementById('circuit-internal-resistance').value = '';
+    document.getElementById('current-circuit-result').style.display = 'none';
+}
+
+// 3. Equivalent Resistance
+function calculateEquivalentResistance() {
+    const values = document.getElementById('resistor-values').value.split(',').map(Number);
+    const unit = parseFloat(document.getElementById('resistor-unit').value);
+    const connectionType = document.getElementById('connection-type').value;
+
+    if (values.some(isNaN)) {
+        displayResult('equivalent-resistance-result', 'Error: Please enter valid resistor values.');
+        return;
+    }
+
+    let totalResistance;
+    if (connectionType === 'series') {
+        totalResistance = values.reduce((acc, val) => acc + val * unit, 0);
+    } else if (connectionType === 'parallel') {
+        const reciprocalSum = values.reduce((acc, val) => acc + 1 / (val * unit), 0);
+        totalResistance = 1 / reciprocalSum;
+    }
+
+    displayResult('equivalent-resistance-result', formatScientific(totalResistance) + ' Ω');
+}
+
+function clearEquivalentResistance() {
+    document.getElementById('resistor-values').value = '';
+    document.getElementById('equivalent-resistance-result').style.display = 'none';
+}
+
+// Attach event listeners on page load
+window.onload = function() {
+    document.querySelector('#terminal-voltage-form .calculate-btn').addEventListener('click', calculateTerminalVoltage);
+    document.querySelector('#terminal-voltage-form .clear-btn').addEventListener('click', clearTerminalVoltage);
+
+    document.querySelector('#current-circuit-form .calculate-btn').addEventListener('click', calculateCurrent);
+    document.querySelector('#current-circuit-form .clear-btn').addEventListener('click', clearCurrent);
+
+    document.querySelector('#equivalent-resistance-form .calculate-btn').addEventListener('click', calculateEquivalentResistance);
+    document.querySelector('#equivalent-resistance-form .clear-btn').addEventListener('click', clearEquivalentResistance);
+};
+
+    </script>
+</body>
+</html>

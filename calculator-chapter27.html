@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - Chapter: Resistance and Power</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+    </script>
+    <style>
+        body {
+            color: #000;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .calculate-btn, .clear-btn {
+            flex: 1;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .clear-btn {
+            background-color: #dc3545;
+        }
+        .calculate-btn:hover {
+            background-color: #0056b3;
+        }
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+        .calculator {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #138496;
+        }
+        .unit-select {
+            margin-left: 10px;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .result-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    display: none; /* يبدأ مخفيًا */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.result-box.show {
+    display: block;
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Physics 2 Guide</h1>
+        <p>Your ultimate guide to mastering Physics 2</p>
+    </header>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html#theory"><i class="fas fa-book"></i> Theory</a></li>
+            <li><a href="index.html#lab"><i class="fas fa-flask"></i> Physics Lab</a></li>
+            <li><a href="index.html#calculator" class="active"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="index.html#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+        </ul>
+    </nav>
+    
+    <section class="description">
+        <h2>Chapter 27 Calculator</h2>
+
+        <!-- Ohm's Law -->
+        <div class="calculator">
+            <h3>1. Ohm's Law</h3>
+            <p>Formula: \( V = I R \)</p>
+            <p>Enter any two values. One input must be left empty, and the corresponding value will be calculated:</p>
+            <form id="ohms-law-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="ohms-v">Voltage (V):</label>
+                    <input type="number" id="ohms-v" step="any">
+                    <select id="ohms-v-unit" class="unit-select">
+                        <option value="1">V</option>
+                        <option value="1e-3">mV</option>
+                        <option value="1e-6">&micro;V</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="ohms-i">Current (I):</label>
+                    <input type="number" id="ohms-i" step="any">
+                    <select id="ohms-i-unit" class="unit-select">
+                        <option value="1">A</option>
+                        <option value="1e-3">mA</option>
+                        <option value="1e-6">&micro;A</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="ohms-r">Resistance (R):</label>
+                    <input type="number" id="ohms-r" step="any">
+                    <select id="ohms-r-unit" class="unit-select">
+                        <option value="1">&Omega;</option>
+                        <option value="1e3">k&Omega;</option>
+                        <option value="1e6">M&Omega;</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="ohms-law-result" class="result-box"></div>
+        </div>
+
+        <!-- Resistance of a Conductor -->
+        <div class="calculator">
+            <h3>2. Resistance of a Conductor</h3>
+            <p>Formula: \( R = \rho \frac{L}{A} \)</p>
+            <form id="resistance-conductor-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="resistivity">Resistivity (\( \rho \)):</label>
+                    <input type="number" id="resistivity" step="any">
+                    <select id="resistivity-unit" class="unit-select">
+                        <option value="1">&Omega;&middot;m</option>
+                        <option value="1e-3">&Omega;&middot;mm</option>
+                        <option value="1e-6">&Omega;&middot;&micro;m</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="length">Length (L):</label>
+                    <input type="number" id="length" step="any">
+                    <select id="length-unit" class="unit-select">
+                        <option value="1">m</option>
+                        <option value="1e-3">mm</option>
+                        <option value="1e-6">&micro;m</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="area">Cross-sectional Area (A):</label>
+                    <input type="number" id="area" step="any">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="resistance-conductor-result" class="result-box"></div>
+        </div>
+
+        <!-- Power Formulas -->
+        <div class="calculator">
+            <h3>3. Power Formulas</h3>
+            <p>Enter any two values. One input must be left empty, and the corresponding formula will be used for calculation:</p>
+            <ul>
+                <li>If you enter I and V, it uses \( P = IV \).</li>
+                <li>If you enter I and R, it uses \( P = I^2 R \).</li>
+                <li>If you enter V and R, it uses \( P = \frac{V^2}{R} \).</li>
+            </ul>
+            <form id="power-form" onsubmit="return false;">
+                <div class="form-control">
+                    <label for="power-i">Current (I):</label>
+                    <input type="number" id="power-i" step="any">
+                    <select id="power-i-unit" class="unit-select">
+                        <option value="1">A</option>
+                        <option value="1e-3">mA</option>
+                        <option value="1e-6">&micro;A</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="power-v">Voltage (V):</label>
+                    <input type="number" id="power-v" step="any">
+                    <select id="power-v-unit" class="unit-select">
+                        <option value="1">V</option>
+                        <option value="1e-3">mV</option>
+                        <option value="1e-6">&micro;V</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="power-r">Resistance (R):</label>
+                    <input type="number" id="power-r" step="any">
+                    <select id="power-r-unit" class="unit-select">
+                        <option value="1">&Omega;</option>
+                        <option value="1e3">k&Omega;</option>
+                        <option value="1e6">M&Omega;</option>
+                    </select>
+                </div>
+
+                    <div class="btn-group">
+                    <button type="button" class="calculate-btn">Calculate</button>
+                    <button type="button" class="clear-btn">Clear</button>
+                </div>
+            </form>
+            <div id="power-result" class="result-box"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">Back</a>
+    </section>
+    <script>
+        // Constants
+const KE = 8.99e9; // Coulomb constant
+const EPSILON_0 = 8.854e-12; // Permittivity of free space
+
+// Helper function to get input value with unit conversion
+function getValueWithUnit(inputId, unitId) {
+    const value = parseFloat(document.getElementById(inputId).value);
+    const unit = parseFloat(document.getElementById(unitId).value);
+    return value * unit;
+}
+
+// Helper function to format result in scientific notation
+function formatScientific(value) {
+    if (value === 0) return "0.00";
+    if (value >= 1 && value < 10) {
+        return `result = ${value.toFixed(2)}`;
+    } else {
+        const exponent = Math.floor(Math.log10(Math.abs(value)));
+        const mantissa = value / Math.pow(10, exponent);
+        return `result = ${mantissa.toFixed(2)} × 10<sup>${exponent}</sup>`;
+    }
+}
+
+// Function to display result
+function displayResult(elementId, result) {
+    const resultBox = document.getElementById(elementId);
+    resultBox.innerHTML = result;
+    resultBox.classList.add('show');
+
+   
+}
+
+// 1. Ohm's Law: V = I * R
+function calculateOhmsLaw() {
+    const V = getValueWithUnit('ohms-v', 'ohms-v-unit');
+    const I = getValueWithUnit('ohms-i', 'ohms-i-unit');
+    const R = getValueWithUnit('ohms-r', 'ohms-r-unit');
+
+    const hasV = !isNaN(V);
+    const hasI = !isNaN(I);
+    const hasR = !isNaN(R);
+
+    if ((hasV + hasI + hasR) !== 2) {
+        displayResult('ohms-law-result', 'Error: Please enter exactly two values.');
+        return;
+    }
+
+    let result;
+    if (!hasV) {
+        result = I * R;
+        displayResult('ohms-law-result', formatScientific(result) + ' V');
+    } else if (!hasI) {
+        result = V / R;
+        displayResult('ohms-law-result', formatScientific(result) + ' A');
+    } else if (!hasR) {
+        result = V / I;
+        displayResult('ohms-law-result', formatScientific(result) + ' Ω');
+    }
+}
+
+function clearOhmsLaw() {
+    document.getElementById('ohms-v').value = '';
+    document.getElementById('ohms-i').value = '';
+    document.getElementById('ohms-r').value = '';
+    document.getElementById('ohms-law-result').innerHTML = '';
+}
+
+// 2. Resistance of a Conductor: R = ρ * (L / A)
+function calculateResistanceConductor() {
+    const rho = getValueWithUnit('resistivity', 'resistivity-unit');
+    const L = getValueWithUnit('length', 'length-unit');
+    const A = parseFloat(document.getElementById('area').value);
+
+    if (isNaN(rho) || isNaN(L) || isNaN(A) || A === 0) {
+        displayResult('resistance-conductor-result', 'Error: Please enter valid values.');
+        return;
+    }
+
+    const R = rho * (L / A);
+    displayResult('resistance-conductor-result', formatScientific(R) + ' Ω');
+}
+
+function clearResistanceConductor() {
+    document.getElementById('resistivity').value = '';
+    document.getElementById('length').value = '';
+    document.getElementById('area').value = '';
+    document.getElementById('resistance-conductor-result').innerHTML = '';
+}
+
+// 3. Power Formulas
+function calculatePower() {
+    const I = getValueWithUnit('power-i', 'power-i-unit');
+    const V = getValueWithUnit('power-v', 'power-v-unit');
+    const R = getValueWithUnit('power-r', 'power-r-unit');
+
+    const hasI = !isNaN(I);
+    const hasV = !isNaN(V);
+    const hasR = !isNaN(R);
+
+    if ((hasI + hasV + hasR) !== 2) {
+        displayResult('power-result', 'Error: Please enter exactly two values.');
+        return;
+    }
+
+    let P;
+    if (hasI && hasV) {
+        P = I * V;
+        displayResult('power-result', formatScientific(P) + ' W');
+    } else if (hasI && hasR) {
+        P = I ** 2 * R;
+        displayResult('power-result', formatScientific(P) + ' W');
+    } else if (hasV && hasR) {
+        P = (V ** 2) / R;
+        displayResult('power-result', formatScientific(P) + ' W');
+    }
+}
+
+function clearPower() {
+    document.getElementById('power-i').value = '';
+    document.getElementById('power-v').value = '';
+    document.getElementById('power-r').value = '';
+    document.getElementById('power-result').innerHTML = '';
+}
+
+// Attach event listeners on page load
+function attachEventListeners() {
+    document.querySelector('#ohms-law-form .calculate-btn').addEventListener('click', calculateOhmsLaw);
+    document.querySelector('#ohms-law-form .clear-btn').addEventListener('click', clearOhmsLaw);
+
+    document.querySelector('#resistance-conductor-form .calculate-btn').addEventListener('click', calculateResistanceConductor);
+    document.querySelector('#resistance-conductor-form .clear-btn').addEventListener('click', clearResistanceConductor);
+
+    document.querySelector('#power-form .calculate-btn').addEventListener('click', calculatePower);
+    document.querySelector('#power-form .clear-btn').addEventListener('click', clearPower);
+}
+
+// Attach listeners when page loads
+window.onload = attachEventListeners;
+
+    </script>
+</body>
+</html>
